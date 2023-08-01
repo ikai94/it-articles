@@ -3,5 +3,12 @@
         "public/locales",
         "src/shared/config/i18n"
     ],
-    "i18n-ally.sourceLanguage": "en"
+    
+        "scss.validate": false,
+        "css.validate": false,
+        "stylelint.validate": [
+          "css",
+          "scss"
+        ],
+       
 }
