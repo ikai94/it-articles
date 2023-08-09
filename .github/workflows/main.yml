@@ -12,6 +12,7 @@ jobs:
         node-version: [ 17.x ]
 
     steps:
+      - name: Checkout master branch
       - uses: actions/checkout@v2
       - name: Staring Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
