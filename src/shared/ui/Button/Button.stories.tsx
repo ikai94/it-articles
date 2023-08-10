@@ -1,10 +1,11 @@
-import type { ComponentMeta, Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 import { Button, ThemeButton } from './Button';
 
-const meta: Meta<typeof Button> = {
+export default {
     title: 'shared/Button',
     component: Button,
     argTypes: {
@@ -12,37 +13,28 @@ const meta: Meta<typeof Button> = {
     },
 } as ComponentMeta<typeof Button>;
 
-export default meta;
-type Story = StoryObj<typeof Button>;
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
-// создание каждой кнопки с отдельной темой
-export const Primary: Story = {
-    args: {
-        children: 'Text',
-    },
+export const Primary = Template.bind({});
+Primary.args = {
+    children: 'Text',
 };
 
-export const Clear: Story = {
-    args: {
-        children: 'Text',
-        // добавляем тему кнопки
-        theme: ThemeButton.CLEAR,
-    },
+export const Clear = Template.bind({});
+Clear.args = {
+    children: 'Text',
+    theme: ThemeButton.CLEAR,
 };
 
-export const Outline: Story = {
-    args: {
-        children: 'Text',
-        // добавляем тему кнопки
-        theme: ThemeButton.OUTLINE,
-    },
+export const Outline = Template.bind({});
+Outline.args = {
+    children: 'Text',
+    theme: ThemeButton.OUTLINE,
 };
 
-export const OutlineDark: Story = {
-    args: {
-        children: 'Text',
-        // добавляем тему кнопки
-        theme: ThemeButton.OUTLINE,
-    },
-    decorators: [ThemeDecorator(Theme.DARK)],
+export const OutlineDark = Template.bind({});
+OutlineDark.args = {
+    children: 'Text',
+    theme: ThemeButton.OUTLINE,
 };
+OutlineDark.decorators = [ThemeDecorator(Theme.DARK)];

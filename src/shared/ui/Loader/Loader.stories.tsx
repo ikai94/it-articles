@@ -1,28 +1,25 @@
-import type { ComponentMeta, Meta, StoryObj } from '@storybook/react';
-
+import React from 'react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 import { Loader } from './Loader';
 
-const meta: Meta<typeof Loader> = {
+export default {
     title: 'shared/Loader',
-    // добавление компонента в сторибук
     component: Loader,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    args: {
+        to: '/',
+    },
 } as ComponentMeta<typeof Loader>;
 
-export default meta;
-type Story = StoryObj<typeof Loader>;
+const Template: ComponentStory<typeof Loader> = (args) => <Loader {...args} />;
 
-// создание каждой темы в сайтбаре
-export const Light: Story = {
-    args: {},
-};
+export const Normal = Template.bind({});
+Normal.args = {};
 
-export const Dark: Story = {
-    args: {},
-    // Добавление декоратора с темой
-    decorators: [ThemeDecorator(Theme.DARK)],
-};
+export const Dark = Template.bind({});
+Dark.args = {};
+Dark.decorators = [ThemeDecorator(Theme.DARK)];
