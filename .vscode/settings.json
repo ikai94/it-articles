@@ -3,6 +3,7 @@
         "public/locales",
         "src/shared/config/i18n"
     ],
+    "i18n-ally.displayLanguage": "ru, en",
     
         "scss.validate": false,
         "css.validate": false,
@@ -10,5 +11,6 @@
           "css",
           "scss"
         ],
+        "i18n-ally.keystyle": "flat",
        
 }
