@@ -10,5 +10,7 @@
   "throw error": "throw error",
   "Переключение": "Switching",
   "Короткий язык": "En",
-  "Войти": "Auth"
+  "Войти": "Auth", 
+  "increment": "increment",
+  "decrement": "decrement"
 }
