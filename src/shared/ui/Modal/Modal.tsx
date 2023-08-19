@@ -69,7 +69,6 @@ export const Modal = (props: ModalProps) => {
         // Когда значение true, навешивается стиль opened со значением opacity=1 и окно становится видимым
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
-        [cls[theme]]: true,
     };
 
     return (
