@@ -12,6 +12,7 @@ interface ModalProps {
     children?: ReactNode;
     isOpen?: boolean;
     onClose?: () => void;
+    lazy?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
@@ -22,13 +23,25 @@ export const Modal = (props: ModalProps) => {
         children,
         isOpen,
         onClose,
+        lazy,
     } = props;
     // состояние закрытия модального окна
     const [isClosing, setIsClosing] = useState(false);
+
+    // отвечает за состояние монтирование модалки в дом дерево
+    const [isMounted, setIsMounted] = useState(false);
+
     // ReturnType возвращет тип который возвращает данная функция setTimeout
     // cделано при помощи данного хука, чтоб можно было осуществить очистку
     const timerRef = useRef<ReturnType<typeof setTimeout>>();
     const { theme } = useTheme();
+
+    // если модальное окно будет открыто, то значение будет монтировано с true
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true);
+        }
+    }, [isOpen]);
 
     // сначала делаем значение true для срабатывания модов на стиле, а потом закрываем
     const closeHandler = useCallback(() => {
@@ -70,6 +83,11 @@ export const Modal = (props: ModalProps) => {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
     };
+
+    // если указан пропс lazy и компонент не вмонтирован то будем возвращать null. Само модальное окно не отрисовываем.
+    if (lazy && !isMounted) {
+        return null;
+    }
 
     return (
         // переносим компонент на верхний уровень дом дерева при помощи портала
