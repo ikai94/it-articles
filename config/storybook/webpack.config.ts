@@ -1,4 +1,4 @@
-import webpack from 'webpack';
+import webpack, { DefinePlugin } from 'webpack';
 import path from 'path';
 import { BuildPaths } from '../build/types/config';
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
@@ -36,6 +36,12 @@ export default ({ config }: {config: webpack.Configuration}) => {
     });
 
     config.module?.rules?.push(buildCssLoader(true));
+
+    // передаем аргумент из дев, который мы используем для продакшена
+    config.plugins?.push(new DefinePlugin({
+        __IS_DEV__: true,
+    }));
+
     // возвращаем этот же самый конфиг уже измененный
     return config;
 };
