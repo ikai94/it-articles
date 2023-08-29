@@ -30,7 +30,7 @@ export const loginSlice = createSlice({
                 // будем показывать какой нибудь спинер
                 state.isLoading = true;
             })
-            .addCase(loginByUsername.fulfilled, (state, action) => {
+            .addCase(loginByUsername.fulfilled, (state) => {
                 state.isLoading = true;
             })
             .addCase(loginByUsername.rejected, (state, action) => {
