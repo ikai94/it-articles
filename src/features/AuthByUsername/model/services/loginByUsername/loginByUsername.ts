@@ -3,14 +3,14 @@ import axios from 'axios';
 import { User, userActions } from 'entities/User';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localestorage';
 
-interface loginByUsernameProps {
+interface LoginByUsernameProps {
     username: string;
     password: string;
 }
 
 // создаю запрос для получения данных с сервера
 // дженерикам передается 1 аргумент то что возвращает сервак, в данном случаи данные пользователя, а второй аргумент то что ожидается на вход, третим аргументом передается обработчик ошибок
-export const loginByUsername = createAsyncThunk<User, loginByUsernameProps, {rejectValue: string}>(
+export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, {rejectValue: string}>(
     'login/loginByUsername',
     // authData передаем на прямую как тело запроса (можно было реализовать деструктуризацию с паролем и именем пользователя)
     async (authData, thunkAPI) => {

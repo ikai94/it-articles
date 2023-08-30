@@ -15,6 +15,6 @@
   "increment": "increment",
   "decrement": "decrement",
   "Форма авторизации": "Authorization form",
-  "Вы ввели неверный логин или пароль": "You entered an incorrect username or password"
-
+  "Вы ввели неверный логин или пароль": "You entered an incorrect username or password",
+  "Profile page": "Profile page"
 }

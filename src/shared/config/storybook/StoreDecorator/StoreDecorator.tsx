@@ -1,10 +1,12 @@
 import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 import { Story } from '@storybook/react';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
+import { profileReducers } from 'entities/Profile';
 import { loginReducers } from 'features/AuthByUsername/model/slice/loginSlice';
 
 const defaultAsuncReducers: DeepPartial<ReducersMapObject<StateSchema>> = {
     loginForm: loginReducers,
+    profile: profileReducers,
 };
 
 // декоратор stor для reduxtoolkit
