@@ -7,7 +7,7 @@ import cls from './SidebarItem.module.scss';
 
 interface SidebarItemProps {
     // элемент на основание которого будет отрисовываться ссылка компонента
-    item?: SidebarItemType;
+    item: SidebarItemType;
     collapsed: boolean;
 }
 

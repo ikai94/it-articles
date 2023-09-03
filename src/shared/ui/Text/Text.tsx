@@ -20,7 +20,7 @@ export const Text = memo((props: TextProps) => {
         className,
         title,
         text,
-        theme,
+        theme = TextTheme.PRIMARY,
     } = props;
 
     return (

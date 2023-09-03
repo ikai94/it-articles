@@ -1,4 +1,4 @@
-import webpack, { DefinePlugin } from 'webpack';
+import webpack, { DefinePlugin, RuleSetRule } from 'webpack';
 import path from 'path';
 import { BuildPaths } from '../build/types/config';
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
@@ -14,15 +14,16 @@ export default ({ config }: {config: webpack.Configuration}) => {
         src: path.resolve(__dirname, '..', '..', 'src'),
     };
     // запушиваем в конфиг через resolve путь к папке src
-    config.resolve?.modules?.push(paths.src);
+    config!.resolve!.modules!.push(paths.src);
     // запушиваем расширения типов в конфиг через resolve
-    config.resolve?.extensions?.push('.ts', '.tsx');
+    config!.resolve!.extensions!.push('.ts', '.tsx');
     // запушиваем loader который мы создали как отдельную функцию, и передаем аргументов значение true, так как это config
 
-    if (config.module?.rules !== undefined) {
+    if (config!.module!.rules !== undefined) {
         // Правило для svg
         // eslint-disable-next-line no-param-reassign
-        config.module.rules = config.module.rules.map((rule: any) => {
+        // @ts-ignore
+        config!.module!.rules = config!.module!.rules.map((rule: RuleSetRule) => {
             if (/svg/.test(rule.test as string)) {
                 return { ...rule, exclude: /\.svg$/i };
             }
@@ -30,16 +31,17 @@ export default ({ config }: {config: webpack.Configuration}) => {
         });
     }
 
-    config.module?.rules?.push({
+    config!.module!.rules!.push({
         test: /\.svg$/,
         use: ['@svgr/webpack'],
     });
 
-    config.module?.rules?.push(buildCssLoader(true));
+    config!.module!.rules!.push(buildCssLoader(true));
 
     // передаем аргумент из дев, который мы используем для продакшена
-    config.plugins?.push(new DefinePlugin({
-        __IS_DEV__: true,
+    config!.plugins!.push(new DefinePlugin({
+        __IS_DEV__: JSON.stringify(true),
+        __API__: JSON.stringify(''),
     }));
 
     // возвращаем этот же самый конфиг уже измененный
