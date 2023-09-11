@@ -12,9 +12,20 @@
   "Переключение": "Switching",
   "Короткий язык": "En",
   "Войти": "Auth",
+  "Выйти": "Exit",
   "increment": "increment",
   "decrement": "decrement",
   "Форма авторизации": "Authorization form",
   "Вы ввели неверный логин или пароль": "You entered an incorrect username or password",
-  "Profile page": "Profile page"
+  "Profile page": "Profile page",
+  "Произошла ошибка при загрузке профиля": "An error occurred while loading the profile",
+  "Попробуйте обновить страницу": "Try refreshing the page",
+  "Отменить": "Cancel",
+  "Сохранить": "Save",
+  "Главная": "Main page",
+  "О сайте": "About us",
+  "Профиль": "Profile",
+  "Укажите валюту": "Specify currency",
+  "Укажите страну": "Specify country"
+
 }

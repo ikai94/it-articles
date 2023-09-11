@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Profile, ProfileSchema } from '../types/profile';
 import { fetchProfileData } from '../services/fetchProfileData/fetchProfileData';
+import { updateProfileData } from '../services/updateProfileData/updateProfileData';
 
 const initialState: ProfileSchema = {
     // находимся в режиме для чтения
@@ -14,7 +15,25 @@ const initialState: ProfileSchema = {
 export const profileSlice = createSlice({
     name: 'profile',
     initialState,
-    reducers: {},
+    reducers: {
+        // изменяем состояние флага
+        setReadonly: (state, action: PayloadAction<boolean>) => {
+            state.readonly = action.payload;
+        },
+        cancelEdit: (state) => {
+            // возвращаем в режим только для чтения
+            state.readonly = true;
+            // перезаписываем стейт в первоночальное состояние
+            state.form = state.data;
+        },
+        updateProfile: (state, action: PayloadAction<Profile>) => {
+            // разворачивает старое поле полностью и добавляем новое (в случаи изменения какого то поля, оно перезатрется)
+            state.form = {
+                ...state.form,
+                ...action.payload,
+            };
+        },
+    },
     // изменяем стейт при помощи extraReducers
     extraReducers: (builder) => {
         builder
@@ -28,8 +47,26 @@ export const profileSlice = createSlice({
                 state.isLoading = false;
                 // сохранение данных от сервера в state
                 state.data = action.payload;
+                state.form = action.payload;
             })
             .addCase(fetchProfileData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(updateProfileData.pending, (state) => {
+                // ошибку обновляем, если она была true
+                state.error = undefined;
+                // будем показывать какой нибудь спинер
+                state.isLoading = true;
+            })
+            .addCase(updateProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
+                state.isLoading = false;
+                // сохранение данных от сервера в state
+                state.data = action.payload;
+                state.form = action.payload;
+                state.readonly = true;
+            })
+            .addCase(updateProfileData.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });
