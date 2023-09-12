@@ -23,6 +23,8 @@ export const profileSlice = createSlice({
         cancelEdit: (state) => {
             // возвращаем в режим только для чтения
             state.readonly = true;
+            // сбрасываем текст всех ошибок в форме
+            state.validateErrors = undefined;
             // перезаписываем стейт в первоночальное состояние
             state.form = state.data;
         },
@@ -65,10 +67,11 @@ export const profileSlice = createSlice({
                 state.data = action.payload;
                 state.form = action.payload;
                 state.readonly = true;
+                state.validateErrors = undefined;
             })
             .addCase(updateProfileData.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload;
+                state.validateErrors = action.payload;
             });
     },
 });

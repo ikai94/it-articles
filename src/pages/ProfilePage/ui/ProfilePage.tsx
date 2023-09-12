@@ -3,14 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useEffect } from 'react';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
-    ProfileCard, fetchProfileData,
+    ProfileCard, ValidateProfileError, fetchProfileData,
     getProfileError,
-    getProfileForm, getProfileIsLoading, getProfileReadOnly, profileActions, profileReducers,
+    getProfileForm, getProfileIsLoading, getProfileReadOnly, getProfileValidateErrors, profileActions, profileReducers,
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducerList = {
@@ -22,17 +23,30 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
     const dispatch = useAppDispatch();
     // получаем силекторы на уровни страницы и затем передаем их пропсом
     const formData = useSelector(getProfileForm);
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadOnly);
+    const validateErrors = useSelector(getProfileValidateErrors);
+
+    // создание переводов для ошибок(затем по ключу передаем ошибку) = МАПИНГ!
+    const validateErrorTranslates = {
+        [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранение'),
+        [ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
+        [ValidateProfileError.INCORRECT_COUNTRY]: t('Неккоректный регион'),
+        [ValidateProfileError.NO_DATA]: t('Данные не указаны'),
+        [ValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фамилия обязательны'),
+    };
 
     // диспатчим запрос на сервер
     useEffect(() => {
-        dispatch(fetchProfileData());
+        // не делает запрос на сервер для сторибук, проверка по глобальному ключу
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchProfileData());
+        }
     }, [dispatch]);
 
     // изменение состояния по полю Firstname
@@ -50,11 +64,9 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     }, [dispatch]);
 
     const onChangeAge = useCallback((value?: string) => {
-        if ((Number(value))) {
-            dispatch(profileActions.updateProfile({
-                age: Number(value || 0),
-            }));
-        }
+        dispatch(profileActions.updateProfile({
+            age: Number(value || 0),
+        }));
     }, [dispatch]);
 
     const onChangeCity = useCallback((value?: string) => {
@@ -91,6 +103,14 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames('', {}, [className])}>
                 <ProfilePageHeader />
+                {/* проверка на количество ошибок и последующая их отрисовка */}
+                {validateErrors?.length && validateErrors.map((err) => (
+                    <Text
+                        key={err}
+                        theme={TextTheme.ERROR}
+                        text={validateErrorTranslates[err]}
+                    />
+                ))}
                 <ProfileCard
                     data={formData}
                     isLoading={isLoading}
