@@ -2,7 +2,9 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localestorage';
 import { User, UserSchema } from '../types/user';
 
-const initialState: UserSchema = {};
+const initialState: UserSchema = {
+    _inited: false,
+};
 
 // слайсы в котором указывается первоночальное состояние, название и редьюсеры
 export const userSlice = createSlice({
@@ -21,6 +23,7 @@ export const userSlice = createSlice({
                 // передаем в состояние, но перед этим парсим, так как они у нас в строке.
                 state.authData = JSON.parse(user);
             }
+            state._inited = true;
         },
         logout: (state) => {
             // очищаем стейт

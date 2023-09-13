@@ -6,7 +6,7 @@ import { ProfilePage } from 'pages/ProfilePage';
 
 // расширяем значение встроенной библиотеки пропсов
 // если значение будет true, то будет доступно только авторизованным пользователям(Profile)
-type AppRoutesProps = RouteProps & {
+export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
 }
 
