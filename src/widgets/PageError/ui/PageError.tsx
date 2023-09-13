@@ -14,6 +14,7 @@ export const PageError = memo(({ className }: PageErrorProps) => {
         // eslint-disable-next-line no-restricted-globals
         location.reload();
     };
+
     return (
         <div className={classNames(cls.PageError, {}, [className])}>
             <p>{t('Произошла непредвиденная ошибка')}</p>
