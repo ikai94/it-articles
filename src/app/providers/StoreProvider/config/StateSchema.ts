@@ -7,6 +7,7 @@ import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { loginSchema } from 'features/AuthByUsername';
 import { NavigateOptions, To } from 'react-router-dom';
+import { ArticleDetailsSchema } from 'entities/Article';
 
 export interface StateSchema {
    counter: CounterSchema;
@@ -15,6 +16,7 @@ export interface StateSchema {
    // Асинхронные редюсеры
    loginForm?: loginSchema;
    profile?: ProfileSchema;
+   articleDetails?: ArticleDetailsSchema;
 }
 
 // достаем ключи при помощи keyof, помогает при автокомплиде и просто типиизован

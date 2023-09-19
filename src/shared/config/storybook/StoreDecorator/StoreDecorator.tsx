@@ -3,10 +3,12 @@ import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 import { profileReducers } from 'entities/Profile';
 import { loginReducers } from 'features/AuthByUsername/model/slice/loginSlice';
 import { ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { articleDetailsReducers } from 'entities/Article/model/slice/articleDetailsSlice';
 
 const defaultAsuncReducers:ReducerList = {
     loginForm: loginReducers,
     profile: profileReducers,
+    articleDetails: articleDetailsReducers,
 };
 
 // декоратор stor для reduxtoolkit
