@@ -4,11 +4,15 @@ import { profileReducers } from 'entities/Profile';
 import { loginReducers } from 'features/AuthByUsername/model/slice/loginSlice';
 import { ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { articleDetailsReducers } from 'entities/Article/model/slice/articleDetailsSlice';
+import { addCommentFormReducers } from 'features/addCommentForm/model/slices/addCommentFormSlice';
+import { articleDetailsCommentsReducer } from 'pages/ArticleDetailsPage/model/slice/articleDetailsCommentsSlice';
 
 const defaultAsuncReducers:ReducerList = {
     loginForm: loginReducers,
     profile: profileReducers,
     articleDetails: articleDetailsReducers,
+    addCommentForm: addCommentFormReducers,
+    articleDetailsComments: articleDetailsCommentsReducer,
 };
 
 // декоратор stor для reduxtoolkit

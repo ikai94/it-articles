@@ -22,7 +22,7 @@ describe('fetchProfileData.test', () => {
         // создание объекта из класса который сделали
         const thunk = new TestAsyncThunk(fetchProfileData);
         thunk.api.get.mockReturnValue(Promise.resolve({ data }));
-        const result = await thunk.callThunk();
+        const result = await thunk.callThunk('1');
 
         // подтверждение самого вызова поста
         expect(thunk.api.get).toHaveBeenCalled();
@@ -34,7 +34,7 @@ describe('fetchProfileData.test', () => {
     test('error', async () => {
         const thunk = new TestAsyncThunk(fetchProfileData);
         thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
-        const result = await thunk.callThunk();
+        const result = await thunk.callThunk('1');
 
         expect(result.meta.requestStatus).toBe('rejected');
     });

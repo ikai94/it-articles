@@ -19,7 +19,9 @@
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "views": 1022,
       "createdAt": "26.02.2022",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -100,6 +102,24 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "ssfsfsfsfsf",
+      "id": "BUoF7Qn"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "Проверка",
+      "id": "IdYf30U"
+    },
+    {
+      "articleId": "1",
+      "userId": "2",
+      "text": "ыаываыа",
+      "id": "iUxrMOo"
     }
   ],
   "users": [
@@ -107,23 +127,39 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "avatar": "https://wordpress-s3websitefiles-qe2pg7xcae3.s3.us-east-2.amazonaws.com/wordpress/wp-content/uploads/2019/11/26160520/Male.jpg"
     },
     {
       "id": "2",
       "username": "user",
       "password": "123",
-      "role": "USER"
+      "role": "USER",
+      "avatar": "https://i1.sndcdn.com/avatars-000180533633-u9i96w-t500x500.jpg"
     }
   ],
-  "profile": {
-    "first": "jgh",
-    "lastname": "asf",
-    "age": 465,
-    "currency": "RUB",
-    "country": "Belarus",
-    "city": "Moscow",
-    "username": "admin213",
-    "avatar": "https://yt3.ggpht.com/ytc/AAUvwngFzM_Rf6MNwOnFcuphoj93k7VFjlIrj-kSMxbh=s900-c-k-c0x00ffffff-no-rj"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Fedor",
+      "lastname": "Konuxov",
+      "age": 56,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin",
+      "avatar": "https://wordpress-s3websitefiles-qe2pg7xcae3.s3.us-east-2.amazonaws.com/wordpress/wp-content/uploads/2019/11/26160520/Male.jpg"
+    },
+    {
+      "id": "2",
+      "first": "xxxdd",
+      "lastname": "sss",
+      "age": 22,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "user",
+      "avatar": "https://i1.sndcdn.com/avatars-000180533633-u9i96w-t500x500.jpg"
+    }
+  ]
 }

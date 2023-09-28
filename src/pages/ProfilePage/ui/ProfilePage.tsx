@@ -12,6 +12,8 @@ import { useSelector } from 'react-redux';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { useParams } from 'react-router-dom';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducerList = {
@@ -31,6 +33,8 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
     const error = useSelector(getProfileError);
     const readonly = useSelector(getProfileReadOnly);
     const validateErrors = useSelector(getProfileValidateErrors);
+    // получаем необходимый id из запроса(для отображения страницы по номеру)
+    const { id } = useParams<{id: string}>();
 
     // создание переводов для ошибок(затем по ключу передаем ошибку) = МАПИНГ!
     const validateErrorTranslates = {
@@ -41,13 +45,12 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
         [ValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фамилия обязательны'),
     };
 
-    // диспатчим запрос на сервер
-    useEffect(() => {
-        // не делает запрос на сервер для сторибук, проверка по глобальному ключу
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData());
+    // диспатчим запрос на сервер и делаем проверку на id, который достаем из useParams
+    useInitialEffect(() => {
+        if (id) {
+            dispatch(fetchProfileData(id));
         }
-    }, [dispatch]);
+    });
 
     // изменение состояния по полю Firstname
     const onChangeFirstname = useCallback((value?: string) => {
