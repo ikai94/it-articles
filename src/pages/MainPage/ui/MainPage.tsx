@@ -1,7 +1,6 @@
-import { Counter } from 'entities/Counter';
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Input } from 'shared/ui/Input/Input';
+import { Page } from 'shared/ui/Page/Page';
 
 const MainPage = memo(() => {
     const { t } = useTranslation();
@@ -12,9 +11,9 @@ const MainPage = memo(() => {
     };
 
     return (
-        <div>
+        <Page>
             {t('Главная страница')}
-        </div>
+        </Page>
     );
 });
 
