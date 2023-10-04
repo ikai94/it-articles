@@ -25,8 +25,10 @@ export interface StateSchema {
    articlesPage?: ArticlesPageSchema;
 }
 
-// достаем ключи при помощи keyof, помогает при автокомплиде и просто типиизован
+// достаем ключи при помощи keyof, помогает при автокомплиде и просто типизирован
 export type StateSchemaKey = keyof StateSchema;
+
+export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>
 
 // для типизации мэнэджера
 export interface ReducerManager {
@@ -34,6 +36,8 @@ export interface ReducerManager {
    reduce: (state: StateSchema, action: AnyAction) => CombinedState<StateSchema>;
    add: (key: StateSchemaKey, reducer: Reducer) => void;
    remove: (key: StateSchemaKey) => void;
+   // true - вмонтирован, false - демонтирован
+   getMountedReducers: () => MountedReducers;
 }
 
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
@@ -42,7 +46,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArg {
    api: AxiosInstance;
-   navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {
