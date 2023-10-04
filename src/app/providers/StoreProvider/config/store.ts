@@ -4,6 +4,7 @@ import {
 import { counterReducers } from 'entities/Counter';
 import { userReducers } from 'entities/User';
 import { $api } from 'shared/api/api';
+import { uiReducers } from 'features/UI';
 import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -18,6 +19,7 @@ export function createReduxStore(
         // в корневом редюсере отсавлять только те, которые являются обязательные, чанки и асинхронные не добавляь
         counter: counterReducers,
         user: userReducers,
+        ui: uiReducers,
     };
 
     // инициализация редьюс менеджера
