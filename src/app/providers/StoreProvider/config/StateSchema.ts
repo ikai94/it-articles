@@ -7,7 +7,7 @@ import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { loginSchema } from 'features/AuthByUsername';
 import { ArticleDetailsSchema } from 'entities/Article';
-import { ArticleDetailsCommentsSchema } from 'pages/ArticleDetailsPage';
+import { ArticleDetailsPageSchema } from 'pages/ArticleDetailsPage';
 import { AddCommentFormSchema } from 'features/addCommentForm';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { UISchema } from 'features/UI';
@@ -21,9 +21,9 @@ export interface StateSchema {
    loginForm?: loginSchema;
    profile?: ProfileSchema;
    articleDetails?: ArticleDetailsSchema;
-   articleDetailsComments?: ArticleDetailsCommentsSchema;
    addCommentForm?: AddCommentFormSchema;
    articlesPage?: ArticlesPageSchema;
+   articleDetailsPage?: ArticleDetailsPageSchema;
 }
 
 // достаем ключи при помощи keyof, помогает при автокомплиде и просто типизирован

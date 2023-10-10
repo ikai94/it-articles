@@ -5,7 +5,7 @@ import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicM
 import {
     ProfileCard, ValidateProfileError, fetchProfileData,
     getProfileError,
-    getProfileForm, getProfileIsLoading, getProfileReadOnly, getProfileValidateErrors, profileActions, profileReducers,
+    getProfileForm, getProfileIsLoading, getProfileReadOnly, getProfileValidateErrors, profileActions, profileReducer,
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
@@ -18,7 +18,7 @@ import { Page } from 'widgets/Page/Page';
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducerList = {
-    profile: profileReducers,
+    profile: profileReducer,
 };
 
 interface ProfilePageProps {

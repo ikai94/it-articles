@@ -55,7 +55,7 @@ export const Page = memo((props: PageProps) => {
         >
             {children}
             {/* элемент который будет находится внизу страницы, и после его пересечения будет срабатывать callback */}
-            <div ref={triggerRef} />
+            { onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null }
         </section>
     );
 });

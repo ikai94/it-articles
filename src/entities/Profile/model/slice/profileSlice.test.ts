@@ -1,7 +1,7 @@
 import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
 import {
-    ProfileSchema, ValidateProfileError, profileActions, profileReducers, updateProfileData,
+    ProfileSchema, ValidateProfileError, profileActions, profileReducer, updateProfileData,
 } from 'entities/Profile';
 
 const data = {
@@ -18,13 +18,13 @@ describe('profileSlice.test', () => {
     test('test set readonly', () => {
         const state: DeepPartial<ProfileSchema> = { readonly: false };
         // передаем данные в редьюсер для изменения юзернейма и последующая проверка
-        expect(profileReducers(state as ProfileSchema, profileActions.setReadonly(true))).toEqual({ readonly: true });
+        expect(profileReducer(state as ProfileSchema, profileActions.setReadonly(true))).toEqual({ readonly: true });
     });
 
     test('test cancel edit', () => {
         const state: DeepPartial<ProfileSchema> = { data, form: { username: '' } };
         // передаем данные в редьюсер для изменения юзернейма и последующая проверка
-        expect(profileReducers(
+        expect(profileReducer(
             state as ProfileSchema,
             profileActions.cancelEdit(),
         )).toEqual({
@@ -38,7 +38,7 @@ describe('profileSlice.test', () => {
     test('test update profile', () => {
         const state: DeepPartial<ProfileSchema> = { form: { username: '1234' } };
         // передаем данные в редьюсер для изменения юзернейма и последующая проверка
-        expect(profileReducers(
+        expect(profileReducer(
             state as ProfileSchema,
             profileActions.updateProfile({
                 username: '123456',
@@ -56,7 +56,7 @@ describe('profileSlice.test', () => {
             validateErrors: undefined,
         };
         // передаем данные в редьюсер для изменения юзернейма и последующая проверка
-        expect(profileReducers(
+        expect(profileReducer(
             state as ProfileSchema,
             updateProfileData.pending,
         )).toEqual({
@@ -70,7 +70,7 @@ describe('profileSlice.test', () => {
             isLoading: true,
         };
         // передаем данные в редьюсер для изменения юзернейма и последующая проверка
-        expect(profileReducers(
+        expect(profileReducer(
             state as ProfileSchema,
             updateProfileData.fulfilled(data, ''),
         )).toEqual({

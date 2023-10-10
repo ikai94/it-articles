@@ -42,4 +42,4 @@ export const loginSlice = createSlice({
 
 // экспорт экшинов и редьюсеров через деструктуризацию
 export const { actions: loginActions } = loginSlice;
-export const { reducer: loginReducers } = loginSlice;
+export const { reducer: loginReducer } = loginSlice;

@@ -37,4 +37,4 @@ export const addCommentFormSlice = createSlice({
 
 // экспорт экшинов и редьюсеров через деструктуризацию
 export const { actions: addCommentFormActions } = addCommentFormSlice;
-export const { reducer: addCommentFormReducers } = addCommentFormSlice;
+export const { reducer: addCommentFormReducer } = addCommentFormSlice;

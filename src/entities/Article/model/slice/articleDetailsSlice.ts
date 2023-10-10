@@ -38,4 +38,4 @@ export const articleDetailsSlice = createSlice({
 
 // экспорт экшинов и редьюсеров через деструктуризацию
 export const { actions: articleDetailsActions } = articleDetailsSlice;
-export const { reducer: articleDetailsReducers } = articleDetailsSlice;
+export const { reducer: articleDetailsReducer } = articleDetailsSlice;

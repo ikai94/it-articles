@@ -1,6 +1,6 @@
 import { ArticleBlockType, ArticleType } from 'entities/Article/model/types/article';
 import { ArticleDetailsSchema } from 'entities/Article';
-import { articleDetailsReducers } from 'entities/Article/model/slice/articleDetailsSlice';
+import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice';
 import { fetchArticleById } from 'entities/Article/model/services/fetchArticleById/fetchArticleById';
 
 const data = {
@@ -32,7 +32,7 @@ describe('profileSlice.test', () => {
             error: undefined,
         };
         // передаем данные в редьюсер для изменения юзернейма и последующая проверка
-        expect(articleDetailsReducers(
+        expect(articleDetailsReducer(
             state as ArticleDetailsSchema,
             fetchArticleById.pending,
         )).toEqual({
@@ -46,7 +46,7 @@ describe('profileSlice.test', () => {
             isLoading: true,
         };
         // передаем данные в редьюсер для изменения юзернейма и последующая проверка
-        expect(articleDetailsReducers(
+        expect(articleDetailsReducer(
             state as ArticleDetailsSchema,
             fetchArticleById.fulfilled,
         )).toEqual({

@@ -78,4 +78,4 @@ export const profileSlice = createSlice({
 
 // экспорт экшинов и редьюсеров через деструктуризацию
 export const { actions: profileActions } = profileSlice;
-export const { reducer: profileReducers } = profileSlice;
+export const { reducer: profileReducer } = profileSlice;
