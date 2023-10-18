@@ -58,7 +58,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 >
                     {t('Выйти')}
                 </Button>
-
             </header>
         );
     }

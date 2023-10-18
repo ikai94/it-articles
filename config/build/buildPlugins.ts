@@ -1,8 +1,8 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins(
@@ -24,7 +24,12 @@ export function buildPlugins(
             __API__: JSON.stringify(apiURL),
             __PROJECT__: JSON.stringify(project),
         }),
-
+        // патерн для перемещения переводов (откуда и куда)
+        new CopyPlugin({
+            patterns: [
+                { from: paths.locales, to: paths.buildLocales },
+            ],
+        }),
     ];
 
     // при продакшен сборки этих плагинов не будет, сделано для того, чтоб не запускались эти плагины при тестах

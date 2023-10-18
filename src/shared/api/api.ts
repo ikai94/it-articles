@@ -5,9 +5,12 @@ import { USER_LOCALSTORAGE_KEY } from 'shared/const/localestorage';
 export const $api = axios.create({
     // базовый адрес
     baseURL: __API__,
-    // заголовок для получения данных авторизованных пользователей
-    headers: {
-        // получение по ключу в локалсторедж. Если авторизованы, то данные есть, а если нет, то undefined
-        authorization: localStorage.getItem(USER_LOCALSTORAGE_KEY) || '',
-    },
+});
+
+// отрабаывает перед запросом
+$api.interceptors.request.use((config) => {
+    if (config.headers) {
+        config.headers.Authorization = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
+    }
+    return config;
 });

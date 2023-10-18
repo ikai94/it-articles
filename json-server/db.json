@@ -1155,5 +1155,17 @@
       "username": "user",
       "avatar": "https://i1.sndcdn.com/avatars-000180533633-u9i96w-t500x500.jpg"
     }
+  ],
+  "todo": [
+    {
+      "id": "1",
+      "text": "Сделать дела!",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "text": "Сделать дела 2!",
+      "userId": "2"
+    }
   ]
 }

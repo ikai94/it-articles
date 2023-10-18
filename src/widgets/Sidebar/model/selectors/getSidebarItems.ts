@@ -34,7 +34,7 @@ export const getSidebarItems = createSelector(
                 {
                     path: RoutePath.articles,
                     Icon: ArticleIcon,
-                    text: 'Cтатьи',
+                    text: 'Статьи',
                     authOnly: true,
                 },
             );

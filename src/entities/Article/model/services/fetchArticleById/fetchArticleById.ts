@@ -18,6 +18,8 @@ export const fetchArticleById = createAsyncThunk<Article, string, ThunkConfig<st
                 },
             });
 
+            console.log(response.data);
+
             if (!response.data) {
                 throw new Error();
             }

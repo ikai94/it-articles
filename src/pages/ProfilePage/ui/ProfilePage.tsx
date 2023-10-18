@@ -1,11 +1,18 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { DynamicModuleLoader, ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
-    ProfileCard, ValidateProfileError, fetchProfileData,
+    fetchProfileData,
     getProfileError,
-    getProfileForm, getProfileIsLoading, getProfileReadOnly, getProfileValidateErrors, profileActions, profileReducer,
+    getProfileForm,
+    getProfileIsLoading,
+    getProfileReadOnly,
+    getProfileValidateErrors,
+    profileActions,
+    ProfileCard,
+    profileReducer,
+    ValidateProfileError,
 } from 'entities/Profile';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
