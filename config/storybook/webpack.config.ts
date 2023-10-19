@@ -11,6 +11,8 @@ export default ({ config }: {config: webpack.Configuration}) => {
         build: '',
         html: '',
         entry: '',
+        locales: '',
+        buildLocales: '',
         src: path.resolve(__dirname, '..', '..', 'src'),
     };
     // запушиваем в конфиг через resolve путь к папке src
