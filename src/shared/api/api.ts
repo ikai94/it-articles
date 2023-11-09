@@ -7,7 +7,7 @@ export const $api = axios.create({
     baseURL: __API__,
 });
 
-// отрабаывает перед запросом
+// отрабатывает перед запросом
 $api.interceptors.request.use((config) => {
     if (config.headers) {
         config.headers.Authorization = localStorage.getItem(USER_LOCALSTORAGE_KEY) || '';
