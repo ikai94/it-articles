@@ -4,11 +4,15 @@ import { Article } from '../../types/article';
 
 // создаю запрос для получения данных с сервера
 // дженерикам передается 1 аргумент то что возвращает сервак, в данном случаи данные пользователя, а второй аргумент то что ожидается на вход (id статьи), третим аргументом передается обработчик ошибок
-export const fetchArticleById = createAsyncThunk<Article, string, ThunkConfig<string>>(
+export const fetchArticleById = createAsyncThunk<Article, string | undefined, ThunkConfig<string>>(
     'articleDetails/FetchArticleById',
     // тела запроса не будет, так как это get запрос
     async (articleId, thunkAPI) => {
         const { extra, rejectWithValue } = thunkAPI;
+
+        if (!articleId) {
+            return rejectWithValue('error');
+        }
 
         try {
             // делаем запрос на бекенд и достаем из статьи поле пользователя

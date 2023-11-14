@@ -1114,6 +1114,48 @@
       "userId": "1",
       "text": "adada",
       "id": "u5LBUWI"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "xfxfx",
+      "id": "pOa-QzZ"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "sfsssf",
+      "id": "SF9RzL8"
+    },
+    {
+      "articleId": "19",
+      "userId": "1",
+      "text": "adadaaaadadad",
+      "id": "qLM9Yp1"
+    },
+    {
+      "articleId": "19",
+      "userId": "1",
+      "text": "ssfsfsf",
+      "id": "R8FUX_a"
+    },
+    {
+      "articleId": "19",
+      "userId": "1",
+      "text": "sfsf",
+      "id": "CUu0UBH"
+    },
+    {
+      "articleId": "3",
+      "userId": "1",
+      "text": "fsfsfs",
+      "id": "GEa0o1P"
+    },
+    {
+      "articleId": "31",
+      "userId": "1",
+      "text": "sfsfsfsfs",
+      "id": "t7shJL6"
     }
   ],
   "users": [
@@ -1121,14 +1163,27 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "role": "ADMIN",
+      "roles": [
+        "ADMIN"
+      ],
       "avatar": "https://wordpress-s3websitefiles-qe2pg7xcae3.s3.us-east-2.amazonaws.com/wordpress/wp-content/uploads/2019/11/26160520/Male.jpg"
     },
     {
       "id": "2",
       "username": "user",
       "password": "123",
-      "role": "USER",
+      "roles": [
+        "USER"
+      ],
+      "avatar": "https://i1.sndcdn.com/avatars-000180533633-u9i96w-t500x500.jpg"
+    },
+    {
+      "id": "3",
+      "username": "manager",
+      "password": "123",
+      "roles": [
+        "MANAGER"
+      ],
       "avatar": "https://i1.sndcdn.com/avatars-000180533633-u9i96w-t500x500.jpg"
     }
   ],

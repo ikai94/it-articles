@@ -1,10 +1,8 @@
-import 'app/styles/index.scss';
 import { Story } from '@storybook/react';
-import { BrowserRouter } from 'react-router-dom';
-
+import { Suspense } from 'react';
 // это декоратор роль которого возвращать сториc обвернутый в роутер дом для отображения в сторибук
-export const RouteDecorator = (StoryComponent: Story) => (
-    <BrowserRouter>
+export const SuspenseDecorator = (StoryComponent: Story) => (
+    <Suspense>
         <StoryComponent />
-    </BrowserRouter>
+    </Suspense>
 );

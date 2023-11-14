@@ -25,13 +25,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailsPageProps) => {
     // получаем необходимый id из запроса(для отображения страницы по номеру)
     const { id } = useParams<{id: string}>();
 
-    if (!id) {
-        return (
-            <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>
-                {t('Статья не найдена')}
-            </Page>
-        );
-    }
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Page className={classNames(cls.ArticleDetailsPage, {}, [className])}>

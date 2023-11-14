@@ -4,11 +4,15 @@ import { Profile } from 'entities/Profile';
 
 // создаю запрос для получения данных с сервера
 // дженерикам передается 1 аргумент то что возвращает сервак, в данном случаи данные пользователя, а второй аргумент то что ожидается на вход(айди профиля), третим аргументом передается обработчик ошибок
-export const fetchProfileData = createAsyncThunk<Profile, string, ThunkConfig<string>>(
+export const fetchProfileData = createAsyncThunk<Profile, string | undefined, ThunkConfig<string>>(
     'profile/fetchProfileData',
     // тела запроса не будет, так как это get запрос
     async (profileId, thunkAPI) => {
         const { extra, rejectWithValue } = thunkAPI;
+
+        if (!profileId) {
+            return rejectWithValue('error');
+        }
 
         try {
             // делаем запрос на бекенд (по айди профиля)

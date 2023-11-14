@@ -12,13 +12,8 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
-    const { t } = useTranslation('profile');
     // получаем необходимый id из запроса(для отображения страницы по номеру)
     const { id } = useParams<{id: string}>();
-
-    if (!id) {
-        return <Text text={t('Профиль не найдет')} />;
-    }
 
     return (
         <Page className={classNames('', {}, [className])}>

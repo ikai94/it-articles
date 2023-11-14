@@ -18,7 +18,7 @@ const AppRouter = () => {
                 key={route.path}
                 path={route.path}
                 // если авторизован, то попадаем на саму страницу, если нет, то редиректет
-                element={route.authOnly ? <RequireAuth>{element}</RequireAuth> : element}
+                element={route.authOnly ? <RequireAuth roles={route.roles}>{element}</RequireAuth> : element}
             />
         );
     }, []);
