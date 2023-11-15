@@ -1,6 +1,6 @@
 // проверка на заполнение полей в форме пользователь
 import { Profile } from 'entities/Profile';
-import { ValidateProfileError } from '../../types/editableProfileCardSchema';
+import { ValidateProfileError } from '../../consts/consts';
 
 export const validateProfileData = (profile?: Profile) => {
     // проверка на получение профиля

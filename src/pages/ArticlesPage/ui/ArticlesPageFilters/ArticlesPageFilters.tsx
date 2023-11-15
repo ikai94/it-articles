@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useMemo } from 'react';
 import { ArticleViewSelector } from 'features/ArticleViewSelector';
 import {
-    ArticleSortField, ArticleSortSelector, ArticleTypeTabs, ArticleView,
+    ArticleSortField, ArticleSortSelector, ArticleType, ArticleTypeTabs, ArticleView,
 } from 'entities/Article';
 import { useSelector } from 'react-redux';
 import { Input } from 'shared/ui/Input/Input';
@@ -12,7 +12,6 @@ import { Card } from 'shared/ui/Card/Card';
 import { SortOrder } from 'shared/types';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 import { TabItem, Tabs } from 'shared/ui/Tabs/Tabs';
-import { ArticleType } from 'entities/Article/model/types/article';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import {
     getArticlesPageOrder, getArticlesPageSearch,
