@@ -5,9 +5,10 @@ import React, {
 } from 'react';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Portal } from '../Portal/Portal';
+import { Overlay } from '../Overlay/Overlay';
 import cls from './Modal.module.scss';
 
-// добавляем типы пропсов, как для внетренней части, так и для открытия и закрытия модального окна
+// добавляем типы пропсов, как для внутренней части, так и для открытия и закрытия модального окна
 interface ModalProps {
     className?: string;
     children?: ReactNode;
@@ -63,10 +64,6 @@ export const Modal = (props: ModalProps) => {
         }
     }, [closeHandler]);
 
-    const onContentClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-    };
-
     // очистка компонентка от таймаут, при демонтировании компонентка юзэффект очищает
     useEffect(() => {
         if (isOpen) {
@@ -93,12 +90,13 @@ export const Modal = (props: ModalProps) => {
     return (
         // переносим компонент на верхний уровень дом дерева при помощи портала
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className])}>
-                <div className={cls.overlay} onClick={closeHandler}>
-                    <div className={cls.content} onClick={onContentClick}>
-
-                        {children}
-                    </div>
+            <div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}>
+                {/* добавляем нажатие на область видимости overlay */}
+                <Overlay onClick={closeHandler} />
+                <div
+                    className={cls.content}
+                >
+                    {children}
                 </div>
             </div>
         </Portal>
