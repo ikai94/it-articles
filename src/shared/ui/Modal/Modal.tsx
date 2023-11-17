@@ -1,9 +1,7 @@
-import { Mods, classNames } from 'shared/lib/classNames/classNames';
-import React, {
-    MutableRefObject,
-    ReactNode, useCallback, useEffect, useRef, useState,
-} from 'react';
+import { classNames, Mods } from 'shared/lib/classNames/classNames';
+import React, { ReactNode } from 'react';
 import { useTheme } from 'app/providers/ThemeProvider';
+import { useModal } from 'shared/lib/hooks/useModal/useModal';
 import { Portal } from '../Portal/Portal';
 import { Overlay } from '../Overlay/Overlay';
 import cls from './Modal.module.scss';
@@ -27,54 +25,10 @@ export const Modal = (props: ModalProps) => {
         onClose,
         lazy,
     } = props;
-    // состояние закрытия модального окна
-    const [isClosing, setIsClosing] = useState(false);
 
-    // отвечает за состояние монтирование модалки в дом дерево
-    const [isMounted, setIsMounted] = useState(false);
-
-    // ReturnType возвращет тип который возвращает данная функция setTimeout
-    // cделано при помощи данного хука, чтоб можно было осуществить очистку
-    const timerRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
     const { theme } = useTheme();
-
-    // если модальное окно будет открыто, то значение будет монтировано с true
-    useEffect(() => {
-        if (isOpen) {
-            setIsMounted(true);
-        }
-    }, [isOpen]);
-
-    // сначала делаем значение true для срабатывания модов на стиле, а потом закрываем
-    const closeHandler = useCallback(() => {
-        if (onClose) {
-            setIsClosing(true);
-            timerRef.current = setTimeout(() => {
-                onClose();
-                setIsClosing(false);
-            }, ANIMATION_DELAY);
-        }
-    }, [onClose]);
-
-    // при нажатие на Escape отработает закрытие окна
-    // useCallback сохраняет ссылку на функцию, а не перерендываем новую. Мемоизирует и запоминает ссылку и возвращает одну и тоже ссылку, если в массиве зависимостей ничего не изменилось
-    const onKeyDown = useCallback((e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
-            closeHandler();
-        }
-    }, [closeHandler]);
-
-    // очистка компонентка от таймаут, при демонтировании компонентка юзэффект очищает
-    useEffect(() => {
-        if (isOpen) {
-            window.addEventListener('keydown', onKeyDown);
-        }
-
-        return () => {
-            clearTimeout(timerRef.current);
-            window.removeEventListener('keydown', onKeyDown);
-        };
-    }, [isOpen, onKeyDown]);
+    // хук который отвечает за реализацию открытия и закрытия модального окна
+    const { isClosing, close, isMounted } = useModal({ animationDelay: ANIMATION_DELAY, isOpen, onClose });
 
     const mods: Mods = {
         // Когда значение true, навешивается стиль opened со значением opacity=1 и окно становится видимым
@@ -92,7 +46,7 @@ export const Modal = (props: ModalProps) => {
         <Portal>
             <div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}>
                 {/* добавляем нажатие на область видимости overlay */}
-                <Overlay onClick={closeHandler} />
+                <Overlay onClick={close} />
                 <div
                     className={cls.content}
                 >
