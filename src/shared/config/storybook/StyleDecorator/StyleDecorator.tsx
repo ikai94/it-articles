@@ -1,4 +1,4 @@
-import 'app/styles/index.scss';
+import '@/app/styles/index.scss';
 import { Story } from '@storybook/react';
 
 // это декоратор роль которого возвращать стори, согласно документации

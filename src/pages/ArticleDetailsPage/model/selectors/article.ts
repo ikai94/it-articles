@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { getArticleDetailsData } from 'entities/Article';
-import { getUserAuthData } from 'entities/User';
+import { getArticleDetailsData } from '@/entities/Article';
+import { getUserAuthData } from '@/entities/User';
 
 // селектор на проверку  id пользователя и статьи
 export const getCanEditArticle = createSelector(

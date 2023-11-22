@@ -1,4 +1,4 @@
-import { rtkApi } from 'shared/api/rtkApi';
+import { rtkApi } from '@/shared/api/rtkApi';
 import { Notification } from '../model/types/notification';
 
 // инициализация api для получения предупреждений из базы

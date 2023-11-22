@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_LOCALSTORAGE_KEY } from 'shared/const/localestorage';
+import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localestorage';
 
 // установка ахиоса
 export const $api = axios.create({

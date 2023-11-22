@@ -1,7 +1,7 @@
-import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import React, {
     InputHTMLAttributes, memo, useEffect, useRef, useState,
 } from 'react';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 
 // Omit позволяет забрать из типов все пропсы, но исключить те которые не нужны (первым агрументом то что хотим забрать, а вторым аргументом что хотим исключить)

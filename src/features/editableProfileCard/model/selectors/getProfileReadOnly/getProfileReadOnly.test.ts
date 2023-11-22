@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider';
+import { StateSchema } from '@/app/providers/StoreProvider';
 import { getProfileReadOnly } from '../../selectors/getProfileReadOnly/getProfileReadOnly';
 
 describe('getProfileIsLoading.test', () => {
