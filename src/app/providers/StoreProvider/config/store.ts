@@ -52,5 +52,5 @@ export function createReduxStore(
     return store;
 }
 
-// получение типа диспатча(выделяется в квадратные скобки)
+// получение типа диспатча (выделяется в квадратные скобки)
 export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
