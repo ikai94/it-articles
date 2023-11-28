@@ -1245,16 +1245,55 @@
       "avatar": "https://i1.sndcdn.com/avatars-000180533633-u9i96w-t500x500.jpg"
     }
   ],
-  "todo": [
+  "article-rating": [
     {
       "id": "1",
-      "text": "Сделать дела!",
-      "userId": "1"
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "articleId": "1"
     },
     {
       "id": "2",
-      "text": "Сделать дела 2!",
-      "userId": "2"
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "articleId": "2"
+    },
+    {
+      "userId": "1",
+      "rate": 4,
+      "articleId": "9",
+      "id": "hBpfTVW"
+    },
+    {
+      "userId": "1",
+      "rate": 5,
+      "articleId": "11",
+      "feedback": "отстой",
+      "id": "rKZStHo"
+    },
+    {
+      "userId": "1",
+      "rate": 4,
+      "articleId": "5",
+      "id": "XmzGfyP"
+    }
+  ],
+  "profile-rating": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "profileId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "profileId": "2"
     }
   ]
 }

@@ -24,7 +24,7 @@ export const StarRating = memo((props: StarRatingProps) => {
         onSelect,
     } = props;
     // количество выбранных звезд
-    const [currentStarsCount, setCurrentStarsCount] = useState(0);
+    const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
     // проверяем выбрано ли хоть одно значение
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
 
