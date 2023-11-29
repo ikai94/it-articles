@@ -1278,6 +1278,12 @@
       "rate": 4,
       "articleId": "5",
       "id": "XmzGfyP"
+    },
+    {
+      "userId": "1",
+      "rate": 3,
+      "articleId": "12",
+      "id": "3fOmo9_"
     }
   ],
   "profile-rating": [
@@ -1289,11 +1295,17 @@
       "profileId": "1"
     },
     {
-      "id": "2",
       "rate": 4,
-      "feedback": "Хорошая статья",
+      "profileId": "2",
+      "feedback": "Test",
       "userId": "1",
-      "profileId": "2"
+      "id": "vrJoQrw"
+    },
+    {
+      "rate": 5,
+      "profileId": "2",
+      "userId": "1",
+      "id": "q5OmLY5"
     }
   ]
 }

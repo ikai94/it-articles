@@ -15,5 +15,7 @@ export default {
 const Template: ComponentStory<typeof EditableProfileCard> = (args) => <EditableProfileCard {...args} />;
 
 export const Normal = Template.bind({});
-Normal.args = {};
+Normal.args = {
+    id: '1',
+};
 Normal.decorators = [StoreDecorator({})];

@@ -18,7 +18,7 @@ export const NotificationList = memo((props: NotificationListProps) => {
     const { t } = useTranslation();
     // pollingInterval - обновляет отрисовку каждые 5 секунд. LongPuling
     const { data, isLoading } = useNotifications(null, {
-        pollingInterval: 10000,
+        pollingInterval: 5000,
     });
 
     if (isLoading) {

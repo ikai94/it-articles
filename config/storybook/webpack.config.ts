@@ -19,7 +19,11 @@ export default ({ config }: {config: webpack.Configuration}) => {
     config!.resolve!.modules!.push(paths.src);
     // запушиваем расширения типов в конфиг через resolve
     config!.resolve!.extensions!.push('.ts', '.tsx');
-    // запушиваем loader который мы создали как отдельную функцию, и передаем аргументов значение true, так как это config
+    // запушиваем алиасы
+    config!.resolve!.alias = {
+        ...config!.resolve!.alias,
+        '@': paths.src,
+    };
 
     if (config!.module!.rules !== undefined) {
         // Правило для svg
