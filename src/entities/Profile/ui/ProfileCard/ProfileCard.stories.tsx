@@ -1,9 +1,11 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import withMock from 'storybook-addon-mock';
+import { ProfileCard } from './ProfileCard';
+import avatar from '@/shared/assets/tests/storybook.jpg';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
-import avatar from '@/shared/assets/tests/storybook.jpg';
-import { ProfileCard } from './ProfileCard';
 
 export default {
     title: 'entities/Profile/ProfileCard',
@@ -11,6 +13,7 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    decorators: [withMock],
 } as ComponentMeta<typeof ProfileCard>;
 
 const Template: ComponentStory<typeof ProfileCard> = (args) => <ProfileCard {...args} />;
@@ -18,16 +21,19 @@ const Template: ComponentStory<typeof ProfileCard> = (args) => <ProfileCard {...
 export const Normal = Template.bind({});
 Normal.args = {
     data: {
-        first: 'admin',
-        lastname: 'admin',
-        age: 22,
         username: 'admin',
+        age: 22,
         country: Country.Russia,
-        city: 'Krasnodar',
-        currency: Currency.RUB,
+        lastname: 'admin',
+        first: 'asd',
+        city: 'asf',
+        currency: Currency.USD,
         avatar,
     },
 };
+Normal.decorators = [
+    StoreDecorator({}),
+];
 
 export const isLoading = Template.bind({});
 isLoading.args = {
