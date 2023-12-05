@@ -1,10 +1,10 @@
-import {
-    ButtonHTMLAttributes, FC, ReactNode, memo,
-} from 'react';
-import { Mods, classNames } from '@/shared/lib/classNames/classNames';
+import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Button.module.scss';
 
-// темы для кнопки
+/**
+ * Темы для кнопки
+ */
 export enum ButtonTheme {
     CLEAR = 'clear',
     CLEAR_INVERTED = 'clearInverted',
@@ -13,7 +13,10 @@ export enum ButtonTheme {
     BACKGROUND = 'background',
     BACKGROUND_INVERTED = 'backgroundInverted'
 }
-// размеры для кнопки
+
+/**
+ * Размеры для кнопки
+ */
 export enum ButtonSize {
     M = 'size_m',
     L = 'size_l',
@@ -22,15 +25,30 @@ export enum ButtonSize {
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     className?: string;
+    /**
+     * Тема кнопки. Отвечает за визуал (в рамке, без стилей, противополныжный теме приложения и т.д.)
+     */
     theme?: ButtonTheme;
-    // Отвечает за размер кнопки по умолчанию
+    /**
+     * флаг делающий кнопку квадратной
+     */
     square?: boolean;
-    // отвечает за размер кнопки
+    /**
+     * Размер кнопки
+     */
     size?: ButtonSize;
-    // дисейблит кнопку
-    disabled?: boolean;
-    children?: ReactNode;
+    /**
+     * Увеличивает кнопку на всю свободную ширину
+     */
     fullWidth?: boolean;
+    /**
+     * Флаг отвечающий за работу кнопки
+     */
+    disabled?: boolean;
+    /**
+     * Содержимое кнопки
+     */
+    children?: ReactNode;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -38,7 +56,6 @@ export const Button = memo((props: ButtonProps) => {
         className,
         children,
         theme = ButtonTheme.OUTLINE,
-        // задаем первоначальные значения именно тут
         size = ButtonSize.M,
         square,
         fullWidth,
@@ -46,7 +63,9 @@ export const Button = memo((props: ButtonProps) => {
         ...otherProps
     } = props;
 
-    // вынес модсы в отдельный объект (деструктуризация)
+    /**
+     * вынес модсы в отдельный объект (деструктуризация)
+     */
     const mods: Mods = {
         [cls[theme]]: true,
         [cls.square]: square,
