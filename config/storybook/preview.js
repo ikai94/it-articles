@@ -14,11 +14,17 @@ export const parameters = {
         },
     },
     layout: 'fullscreen',
+    themes: {
+        default: 'light',
+        list: [
+            { name: 'light', class: Theme.LIGHT, color: '#ffffff' },
+            { name: 'dark', class: Theme.DARK, color: '#111118' },
+            { name: 'orange', class: Theme.ORANGE, color: '#3b5998' },
+        ],
+    },
 };
 
-// @ts-ignore
 addDecorator(StyleDecorator);
 addDecorator(ThemeDecorator(Theme.LIGHT));
-// @ts-ignore
 addDecorator(RouteDecorator);
 addDecorator(SuspenseDecorator);
