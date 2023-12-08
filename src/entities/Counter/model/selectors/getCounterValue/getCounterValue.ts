@@ -1,9 +1,4 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { getCounter } from '../getCounter/getCounter';
-import { CounterSchema } from '../../types/counterSchema';
+import { buildSelector } from '@/shared/lib/store';
 
 // это реселект, он использует состояния селекторов и мемоизирует их (можно прочитать в реселект документации). Здесь один селектор getCoounter и состояние взято только его, но можно добавлять еще и брать состояние других селекторов и работать с ними
-export const getCounterValue = createSelector(
-    getCounter,
-    (counter: CounterSchema) => counter.value,
-);
+export const [useCounterValue, getCounterValue] = buildSelector((state) => state.counter.value);

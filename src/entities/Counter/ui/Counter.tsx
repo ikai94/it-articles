@@ -1,21 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/shared/ui/Button';
-import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
-import { counterActions } from '../model/slice/counterSlice';
+import { getCounterValue, useCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
+import { counterActions, useCounterActions } from '../model/slice/counterSlice';
 
 export const Counter = () => {
     // диспатчим новые состояние
     const dispatch = useDispatch();
     // используем необходимый нам селектор для получения состояний.
-    const counterValue = useSelector(getCounterValue);
+    const counterValue = useCounterValue();
     const { t } = useTranslation();
-    const increment = () => {
-        dispatch(counterActions.increment());
+    const { increment, decrement, add } = useCounterActions();
+    const handleInc = () => {
+        increment();
     };
 
-    const decrement = () => {
-        dispatch(counterActions.decrement());
+    const handleDec = () => {
+        decrement();
+    };
+
+    const handleIncFive = () => {
+        add(5);
     };
 
     return (
@@ -24,16 +29,21 @@ export const Counter = () => {
                 {counterValue}
             </h1>
             <Button
-                onClick={increment}
+                onClick={handleInc}
                 data-testid="increment-btn"
             >
                 {t('increment')}
             </Button>
             <Button
-                onClick={decrement}
+                onClick={handleDec}
                 data-testid="decrement-btn"
             >
                 {t('decrement')}
+            </Button>
+            <Button
+                onClick={handleIncFive}
+            >
+                {t('addFive')}
             </Button>
         </div>
     );
