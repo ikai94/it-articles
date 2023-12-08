@@ -5,6 +5,7 @@ interface BuildBabelLoaderProps extends BuildOptions {
     isTsx?: boolean
 }
 export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
+    const isProd = !isDev;
     return {
         // создаем условия, по которому передаем проверку на true или false
         test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
@@ -12,15 +13,9 @@ export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
         use: {
             loader: 'babel-loader',
             options: {
+                cacheDirectory: true,
                 presets: ['@babel/preset-env'],
                 plugins: [
-                    [
-                        'i18next-extract',
-                        {
-                            locales: ['ru', 'en'],
-                            keyAsDefaultValue: true,
-                        },
-                    ],
                     [
                         '@babel/plugin-transform-typescript',
                         {
@@ -29,7 +24,7 @@ export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
                     ],
                     '@babel/plugin-transform-runtime',
                     // удаление ненужных нод из проекта
-                    isTsx && [
+                    isTsx && isProd && [
                         babelRemovePropsPlugin,
                         {
                             props: ['data-testid'],

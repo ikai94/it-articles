@@ -1190,6 +1190,12 @@
       "userId": "1",
       "text": "sfsfsfsfs",
       "id": "t7shJL6"
+    },
+    {
+      "articleId": "11",
+      "userId": "1",
+      "text": "dgdgdgg",
+      "id": "Qy_x5wK"
     }
   ],
   "users": [
@@ -1306,6 +1312,12 @@
       "profileId": "2",
       "userId": "1",
       "id": "q5OmLY5"
+    },
+    {
+      "rate": 4,
+      "profileId": "1",
+      "userId": "2",
+      "id": "T408N4M"
     }
   ]
 }
