@@ -18,26 +18,29 @@ const options = [
     { value: Currency.USD, content: Currency.USD },
 ];
 
-export const CurrencySelect = memo(({
-    className, value, onChange, readonly,
-}: CurrencySelectProps) => {
-    const { t } = useTranslation();
+export const CurrencySelect = memo(
+    ({ className, value, onChange, readonly }: CurrencySelectProps) => {
+        const { t } = useTranslation();
 
-    // приводим к явному типу полученных значений Currency...
-    const onChangeHandler = useCallback((value: string) => {
-        onChange?.(value as Currency);
-    }, [onChange]);
+        // приводим к явному типу полученных значений Currency...
+        const onChangeHandler = useCallback(
+            (value: string) => {
+                onChange?.(value as Currency);
+            },
+            [onChange],
+        );
 
-    return (
-        <ListBox
-            className={className}
-            onChange={onChangeHandler}
-            value={value}
-            items={options}
-            defaultValue={t('Укажите валюту')}
-            readonly={readonly}
-            direction="top right"
-            label={t('Укажите валюту')}
-        />
-    );
-});
+        return (
+            <ListBox
+                className={className}
+                onChange={onChangeHandler}
+                value={value}
+                items={options}
+                defaultValue={t('Укажите валюту')}
+                readonly={readonly}
+                direction="top right"
+                label={t('Укажите валюту')}
+            />
+        );
+    },
+);

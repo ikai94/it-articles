@@ -12,7 +12,7 @@ interface ArticleViewSelectorProps {
     className?: string;
     view: ArticleView;
     // переключение отображения
-    onViewClick: (view: ArticleView) => void
+    onViewClick: (view: ArticleView) => void;
 }
 
 // массив списков отображения
@@ -28,11 +28,7 @@ const viewTypes = [
 ];
 
 export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
-    const {
-        className,
-        onViewClick,
-        view,
-    } = props;
+    const { className, onViewClick, view } = props;
     const { t } = useTranslation();
 
     const onClick = (newView: ArticleView) => () => {
@@ -49,7 +45,11 @@ export const ArticleViewSelector = memo((props: ArticleViewSelectorProps) => {
                 >
                     <Icon
                         Svg={viewType.icon}
-                        className={classNames('', { [cls.notSelected]: viewType.view !== view }, [])}
+                        className={classNames(
+                            '',
+                            { [cls.notSelected]: viewType.view !== view },
+                            [],
+                        )}
                     />
                 </Button>
             ))}

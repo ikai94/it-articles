@@ -22,7 +22,7 @@ interface ListBoxProps {
     onChange: (value: string) => void;
     readonly?: boolean;
     direction?: DropdownDirection;
-    label?: string
+    label?: string;
 }
 
 // выпадающий список взятый из библиотеки headlessui
@@ -42,21 +42,31 @@ export function ListBox(props: ListBoxProps) {
     const optionsClasses = mapDirectionClass[direction];
 
     return (
-        <HStack gap="4" className={classNames('', { [cls.readonly]: readonly })}>
-            {label && (<span>{`${label}>`}</span>)}
+        <HStack
+            gap="4"
+            className={classNames('', { [cls.readonly]: readonly })}
+        >
+            {label && <span>{`${label}>`}</span>}
             <HListBox
                 disabled={readonly}
                 as="div"
-                className={classNames(cls.ListBox, { [cls.readonly]: readonly }, [className, popupCls.popup])}
+                className={classNames(
+                    cls.ListBox,
+                    { [cls.readonly]: readonly },
+                    [className, popupCls.popup],
+                )}
                 value={value}
                 onChange={onChange}
             >
-                <HListBox.Button aria-disabled={readonly} className={cls.trigger}>
-                    <Button disabled={readonly}>
-                        {value ?? defaultValue}
-                    </Button>
+                <HListBox.Button
+                    aria-disabled={readonly}
+                    className={cls.trigger}
+                >
+                    <Button disabled={readonly}>{value ?? defaultValue}</Button>
                 </HListBox.Button>
-                <HListBox.Options className={classNames(cls.options, {}, [optionsClasses])}>
+                <HListBox.Options
+                    className={classNames(cls.options, {}, [optionsClasses])}
+                >
                     {items?.map((item) => (
                         <HListBox.Option
                             key={item.value}
@@ -67,13 +77,10 @@ export function ListBox(props: ListBoxProps) {
                             {/* навешиваем hover эффект */}
                             {({ active, selected }) => (
                                 <li
-                                    className={classNames(
-                                        cls.item,
-                                        {
-                                            [popupCls.active]: active,
-                                            [popupCls.disabled]: item.disabled,
-                                        },
-                                    )}
+                                    className={classNames(cls.item, {
+                                        [popupCls.active]: active,
+                                        [popupCls.disabled]: item.disabled,
+                                    })}
                                 >
                                     {selected && '* '}
                                     {item.content}

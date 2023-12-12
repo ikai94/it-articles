@@ -1,11 +1,19 @@
 import {
-    AnyAction, ReducersMapObject, combineReducers, Reducer,
+    AnyAction,
+    ReducersMapObject,
+    combineReducers,
+    Reducer,
 } from '@reduxjs/toolkit';
 import {
-    MountedReducers, ReducerManager, StateSchema, StateSchemaKey,
+    MountedReducers,
+    ReducerManager,
+    StateSchema,
+    StateSchemaKey,
 } from './StateSchema';
 
-export function createReducerManager(initialReducers: ReducersMapObject<StateSchema>): ReducerManager {
+export function createReducerManager(
+    initialReducers: ReducersMapObject<StateSchema>,
+): ReducerManager {
     // принятие начальных рельюсеров
     const reducers = { ...initialReducers };
 

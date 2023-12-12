@@ -1,11 +1,15 @@
 import {
-    ImgHTMLAttributes, memo, ReactElement, useLayoutEffect, useState,
+    ImgHTMLAttributes,
+    memo,
+    ReactElement,
+    useLayoutEffect,
+    useState,
 } from 'react';
 
 /**
  * компонент, который отвечает за картинку
  */
-interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement>{
+interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     className?: string;
     /**
      * скелетон, который будет подгружаться во время загрузки картинки
@@ -52,7 +56,5 @@ export const AppImage = memo((props: AppImageProps) => {
         return errorFallback;
     }
 
-    return (
-        <img className={className} src={src} alt={alt} {...otherProps} />
-    );
+    return <img className={className} src={src} alt={alt} {...otherProps} />;
 });

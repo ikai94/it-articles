@@ -66,13 +66,10 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             >
                 {t('Войти')}
             </Button>
-            { /* модалка остается только тогда в дом дереве, когда значение является true */}
+            {/* модалка остается только тогда в дом дереве, когда значение является true */}
             {isAuthModal && (
-                <LoginModal
-                    isOpen={isAuthModal}
-                    onClose={onCloseModal}
-                />
-            ) }
+                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+            )}
         </header>
     );
 });

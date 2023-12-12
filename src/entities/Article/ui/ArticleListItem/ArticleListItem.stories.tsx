@@ -1,10 +1,12 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ArticleListItem } from './ArticleListItem';
+import { Article } from '../../model/types/article';
 import {
-    Article,
-} from '../../model/types/article';
-import { ArticleBlockType, ArticleType, ArticleView } from '../../model/consts/articleConsts';
+    ArticleBlockType,
+    ArticleType,
+    ArticleView,
+} from '../../model/consts/articleConsts';
 
 export default {
     title: 'entities/Article/ArticleListItem',
@@ -14,7 +16,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticleListItem>;
 
-const Template: ComponentStory<typeof ArticleListItem> = (args) => <ArticleListItem {...args} />;
+const Template: ComponentStory<typeof ArticleListItem> = (args) => (
+    <ArticleListItem {...args} />
+);
 
 const article: Article = {
     id: '1',

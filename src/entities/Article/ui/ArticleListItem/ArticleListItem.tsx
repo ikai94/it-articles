@@ -11,7 +11,10 @@ import { AppLink } from '@/shared/ui/AppLink';
 import { Article, ArticleTextBlock } from '../../model/types/article';
 import { ArticleTextBlockComponent } from '../../ui/ArticleTextBlockComponent/ArticleTextBlockComponent';
 import cls from './ArticleListItem.module.scss';
-import { ArticleBlockType, ArticleView } from '../../model/consts/articleConsts';
+import {
+    ArticleBlockType,
+    ArticleView,
+} from '../../model/consts/articleConsts';
 import { getRouteArticleDetails } from '@/shared/const/router';
 import { AppImage } from '@/shared/ui/AppImage';
 import { Skeleton } from '@/shared/ui/Skeleton';
@@ -25,12 +28,7 @@ interface ArticleListItemProps {
 
 // происхоит проверка на view (BIG или SMALL), после чего отображается выбранная тематика
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-    const {
-        className,
-        article,
-        view,
-        target,
-    } = props;
+    const { className, article, view, target } = props;
     const { t } = useTranslation();
 
     // вынес дублируемые части кода
@@ -45,13 +43,23 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
     // проверка на пропс больших статей списком
     if (view === ArticleView.BIG) {
         // находим текстовый блок и его отображаем(сравниваем тип)
-        const textBlock = article.blocks.find((block) => block.type === ArticleBlockType.TEXT) as ArticleTextBlock;
+        const textBlock = article.blocks.find(
+            (block) => block.type === ArticleBlockType.TEXT,
+        ) as ArticleTextBlock;
         return (
-            <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
+            <div
+                className={classNames(cls.ArticleListItem, {}, [
+                    className,
+                    cls[view],
+                ])}
+            >
                 <Card className={cls.card}>
                     <div className={cls.header}>
                         <Avatar size={30} src={article.user.avatar} />
-                        <Text text={article.user.username} className={cls.username} />
+                        <Text
+                            text={article.user.username}
+                            className={cls.username}
+                        />
                         <Text text={article.createdAt} className={cls.date} />
                     </div>
                     <Text title={article.title} className={cls.title} />
@@ -64,8 +72,11 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                     />
                     {/* Проверяем на наличие блока с текстом, после чего используем готовый уже компонент и передаем пропсом textBlock */}
                     {textBlock && (
-                        <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />
-                    ) }
+                        <ArticleTextBlockComponent
+                            block={textBlock}
+                            className={cls.textBlock}
+                        />
+                    )}
                     <div className={cls.footer}>
                         <AppLink to={getRouteArticleDetails(article.id)}>
                             <Button theme={ButtonTheme.OUTLINE}>
@@ -83,7 +94,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         <AppLink
             target={target}
             to={getRouteArticleDetails(article.id)}
-            className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+            className={classNames(cls.ArticleListItem, {}, [
+                className,
+                cls[view],
+            ])}
         >
             <Card>
                 <div className={cls.imageWrapper}>

@@ -8,17 +8,17 @@ export enum ArticleSortField {
 export enum ArticleBlockType {
     CODE = 'CODE',
     IMAGE = 'IMAGE',
-    TEXT = 'TEXT'
+    TEXT = 'TEXT',
 }
 
 export enum ArticleType {
     ALL = 'all',
     IT = 'IT',
     SCIENCE = 'SCIENCE',
-    ECONOMICS = 'ECONOMICS'
+    ECONOMICS = 'ECONOMICS',
 }
 
 export enum ArticleView {
     BIG = 'BIG',
-    SMALL = 'SMALL'
+    SMALL = 'SMALL',
 }

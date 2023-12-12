@@ -1,7 +1,14 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit';
 import { StateSchema } from '@/app/providers/StoreProvider';
 import {
-    Article, ArticleType, ArticleView, ArticleSortField,
+    Article,
+    ArticleType,
+    ArticleView,
+    ArticleSortField,
 } from '@/entities/Article';
 import { ARTICLE_VIEW_LOCALSTORAGE_KEY } from '@/shared/const/localestorage';
 
@@ -9,7 +16,7 @@ import { SortOrder } from '@/shared/types';
 import { ArticlesPageSchema } from '../types/articlesPageSchema';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 
-type Book = { bookId: string; title: string }
+type Book = { bookId: string; title: string };
 
 const articlesAdapter = createEntityAdapter<Article>({
     // получение айди (поле по которому будет идти нормализация)
@@ -62,7 +69,9 @@ const articlesPageSlice = createSlice({
         },
         // первоначальное состояние с сохранием в локалсторедж (инициализация происходит в useEffect в ArticlesPage)
         initState: (state) => {
-            const view = localStorage.getItem(ARTICLE_VIEW_LOCALSTORAGE_KEY) as ArticleView;
+            const view = localStorage.getItem(
+                ARTICLE_VIEW_LOCALSTORAGE_KEY,
+            ) as ArticleView;
             state.view = view;
             // условие для лимита в зависимости от вида сетки
             state.limit = view === ArticleView.BIG ? 4 : 14;
@@ -102,7 +111,5 @@ const articlesPageSlice = createSlice({
     },
 });
 
-export const {
-    reducer: articlesPageReducer,
-    actions: articlesPageActions,
-} = articlesPageSlice;
+export const { reducer: articlesPageReducer, actions: articlesPageActions } =
+    articlesPageSlice;

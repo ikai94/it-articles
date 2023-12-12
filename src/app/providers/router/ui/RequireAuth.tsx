@@ -31,12 +31,20 @@ export function RequireAuth({ children, roles }: RequireAuthProps) {
 
     if (!auth) {
         // Если пользователь не авторизован, то редиректнет на главную страницу
-        return <Navigate to={getRouteMain()} state={{ from: location }} replace />;
+        return (
+            <Navigate to={getRouteMain()} state={{ from: location }} replace />
+        );
     }
 
     if (!hasRequiredRoles) {
         // Если пользователь не авторизован, то редиректнет на страницу оповещение
-        return <Navigate to={getRouteForbidden()} state={{ from: location }} replace />;
+        return (
+            <Navigate
+                to={getRouteForbidden()}
+                state={{ from: location }}
+                replace
+            />
+        );
     }
 
     return children;

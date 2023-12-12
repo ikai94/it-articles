@@ -12,9 +12,7 @@ interface NotificationListProps {
 }
 
 export const NotificationList = memo((props: NotificationListProps) => {
-    const {
-        className,
-    } = props;
+    const { className } = props;
     const { t } = useTranslation();
     // pollingInterval - обновляет отрисовку каждые 5 секунд. LongPuling
     const { data, isLoading } = useNotifications(null, {

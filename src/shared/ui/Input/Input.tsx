@@ -1,11 +1,18 @@
 import React, {
-    InputHTMLAttributes, memo, useEffect, useRef, useState,
+    InputHTMLAttributes,
+    memo,
+    useEffect,
+    useRef,
+    useState,
 } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 
 // Omit позволяет забрать из типов все пропсы, но исключить те которые не нужны (первым агрументом то что хотим забрать, а вторым аргументом что хотим исключить)
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readonly'>
+type HTMLInputProps = Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'value' | 'onChange' | 'readonly'
+>;
 
 // используем расширение для пропсов
 interface InputProps extends HTMLInputProps {
@@ -74,12 +81,10 @@ export const Input = memo((props: InputProps) => {
     };
 
     return (
-    // отрисовываться будет только в том случаи, если пропс placeholder указан* это же касается и isFocused/
+        // отрисовываться будет только в том случаи, если пропс placeholder указан* это же касается и isFocused/
         <div className={classNames(cls.InputWrapper, mods, [className])}>
             {placeholder && (
-                <div className={cls.placeholder}>
-                    {`${placeholder}>`}
-                </div>
+                <div className={cls.placeholder}>{`${placeholder}>`}</div>
             )}
             <div className={cls.caretWrapper}>
                 <input

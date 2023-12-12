@@ -51,10 +51,15 @@ describe('loginByUsername.test', () => {
         // создание объекта из класса который сделали
         const thunk = new TestAsyncThunk(loginByUsername);
         thunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }));
-        const result = await thunk.callThunk({ password: '123', username: '123' });
+        const result = await thunk.callThunk({
+            password: '123',
+            username: '123',
+        });
 
         // проверка экшинов
-        expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue));
+        expect(thunk.dispatch).toHaveBeenCalledWith(
+            userActions.setAuthData(userValue),
+        );
         // количество вызовод dispatch
         expect(thunk.dispatch).toHaveBeenCalledTimes(3);
         // подтверждение самого вызова поста
@@ -68,7 +73,10 @@ describe('loginByUsername.test', () => {
     test('error login', async () => {
         const thunk = new TestAsyncThunk(loginByUsername);
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }));
-        const result = await thunk.callThunk({ password: '123', username: '123' });
+        const result = await thunk.callThunk({
+            password: '123',
+            username: '123',
+        });
 
         expect(thunk.dispatch).toHaveBeenCalledTimes(2);
         expect(thunk.api.post).toHaveBeenCalled();

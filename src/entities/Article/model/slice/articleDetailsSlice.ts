@@ -23,11 +23,14 @@ export const articleDetailsSlice = createSlice({
                 // будем показывать какой нибудь спинер
                 state.isLoading = true;
             })
-            .addCase(fetchArticleById.fulfilled, (state, action: PayloadAction<Article>) => {
-                state.isLoading = false;
-                // сохранение данных от сервера в state
-                state.data = action.payload;
-            })
+            .addCase(
+                fetchArticleById.fulfilled,
+                (state, action: PayloadAction<Article>) => {
+                    state.isLoading = false;
+                    // сохранение данных от сервера в state
+                    state.data = action.payload;
+                },
+            )
             .addCase(fetchArticleById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;

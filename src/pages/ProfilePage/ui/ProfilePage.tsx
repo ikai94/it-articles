@@ -14,7 +14,7 @@ interface ProfilePageProps {
 
 const ProfilePage = memo(({ className }: ProfilePageProps) => {
     // получаем необходимый id из запроса(для отображения страницы по номеру)
-    const { id } = useParams<{id: string}>();
+    const { id } = useParams<{ id: string }>();
     const authData = useSelector(getUserAuthData);
 
     if (!id) {
@@ -25,9 +25,7 @@ const ProfilePage = memo(({ className }: ProfilePageProps) => {
         <Page className={classNames('', {}, [className])}>
             <VStack gap="16" max>
                 <EditableProfileCard id={id} />
-                {
-                    authData?.id !== id && <ProfileRating profileId={id} />
-                }
+                {authData?.id !== id && <ProfileRating profileId={id} />}
             </VStack>
         </Page>
     );

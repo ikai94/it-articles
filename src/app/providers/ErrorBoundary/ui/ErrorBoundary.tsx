@@ -9,8 +9,10 @@ interface ErrorBouandaryState {
     hasError: boolean;
 }
 
-class ErrorBoundary
-    extends React.Component<ErrorBouandaryProps, ErrorBouandaryState> {
+class ErrorBoundary extends React.Component<
+    ErrorBouandaryProps,
+    ErrorBouandaryState
+> {
     constructor(props: ErrorBouandaryProps) {
         super(props);
         this.state = { hasError: false };
@@ -31,7 +33,7 @@ class ErrorBoundary
         const { children } = this.props;
 
         if (hasError) {
-        // You can render any custom fallback UI
+            // You can render any custom fallback UI
             return (
                 <Suspense fallback="">
                     <PageError />

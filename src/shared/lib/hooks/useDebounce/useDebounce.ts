@@ -12,13 +12,16 @@ export function useDebounce(callback: (...arg: any[]) => void, delay: number) {
     const timer = useRef() as MutableRefObject<any>;
 
     // пока таймер очищается, функция вызвана не будет
-    return useCallback((...arg: any[]) => {
-        if (timer.current) {
-            clearTimeout(timer.current);
-        }
+    return useCallback(
+        (...arg: any[]) => {
+            if (timer.current) {
+                clearTimeout(timer.current);
+            }
 
-        timer.current = setTimeout(() => {
-            callback(...arg);
-        }, delay);
-    }, [callback, delay]);
+            timer.current = setTimeout(() => {
+                callback(...arg);
+            }, delay);
+        },
+        [callback, delay],
+    );
 }

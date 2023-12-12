@@ -1,7 +1,5 @@
 import { StateSchema } from '@/app/providers/StoreProvider';
-import {
-    getProfileFirstname,
-} from '../../selectors/getProfileFirstname/getProfileFirstname';
+import { getProfileFirstname } from '../../selectors/getProfileFirstname/getProfileFirstname';
 
 describe('getProfileFirstname.test', () => {
     test('should return data', () => {

@@ -1,7 +1,10 @@
 import { ArticleDetailsSchema } from '../../model/types/articleDetailsSchema';
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
-import { ArticleBlockType, ArticleType } from '../../model/consts/articleConsts';
+import {
+    ArticleBlockType,
+    ArticleType,
+} from '../../model/consts/articleConsts';
 
 const data = {
     id: '1',
@@ -32,10 +35,12 @@ describe('profileSlice.test', () => {
             error: undefined,
         };
         // передаем данные в редьюсер для изменения юзернейма и последующая проверка
-        expect(articleDetailsReducer(
-            state as ArticleDetailsSchema,
-            fetchArticleById.pending,
-        )).toEqual({
+        expect(
+            articleDetailsReducer(
+                state as ArticleDetailsSchema,
+                fetchArticleById.pending,
+            ),
+        ).toEqual({
             isLoading: true,
             error: undefined,
         });
@@ -46,10 +51,12 @@ describe('profileSlice.test', () => {
             isLoading: true,
         };
         // передаем данные в редьюсер для изменения юзернейма и последующая проверка
-        expect(articleDetailsReducer(
-            state as ArticleDetailsSchema,
-            fetchArticleById.fulfilled,
-        )).toEqual({
+        expect(
+            articleDetailsReducer(
+                state as ArticleDetailsSchema,
+                fetchArticleById.fulfilled,
+            ),
+        ).toEqual({
             isLoading: false,
         });
     });

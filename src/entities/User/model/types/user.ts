@@ -9,6 +9,6 @@ export interface User {
 
 // интерфейс для стейта юзер
 export interface UserSchema {
-  authData?: User;
-  _inited: boolean;
+    authData?: User;
+    _inited: boolean;
 }

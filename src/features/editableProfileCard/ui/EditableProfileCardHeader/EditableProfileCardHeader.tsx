@@ -16,50 +16,51 @@ interface EditableProfileCardHeaderProps {
     className?: string;
 }
 
-export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderProps) => {
-    const {
-        className,
-    } = props;
+export const EditableProfileCardHeader = memo(
+    (props: EditableProfileCardHeaderProps) => {
+        const { className } = props;
 
-    const { t } = useTranslation('profile');
-    const authData = useSelector(getUserAuthData);
-    const profileData = useSelector(getProfileData);
-    // проверка на авторизованного пользователя
-    const canEdit = authData?.id === profileData?.id;
-    // флаг для отрисовки кнопки редактировать или отменить
-    const readonly = useSelector(getProfileReadOnly);
-    const dispatch = useAppDispatch();
+        const { t } = useTranslation('profile');
+        const authData = useSelector(getUserAuthData);
+        const profileData = useSelector(getProfileData);
+        // проверка на авторизованного пользователя
+        const canEdit = authData?.id === profileData?.id;
+        // флаг для отрисовки кнопки редактировать или отменить
+        const readonly = useSelector(getProfileReadOnly);
+        const dispatch = useAppDispatch();
 
-    // оборачивает в useCallback так как необходимо сохранить ссылку на эту функцию и она будет передаваться аргументом
-    const onEdit = useCallback(() => {
-        dispatch(profileActions.setReadonly(false));
-    }, [dispatch]);
+        // оборачивает в useCallback так как необходимо сохранить ссылку на эту функцию и она будет передаваться аргументом
+        const onEdit = useCallback(() => {
+            dispatch(profileActions.setReadonly(false));
+        }, [dispatch]);
 
-    const onCancelEdit = useCallback(() => {
-        dispatch(profileActions.cancelEdit());
-    }, [dispatch]);
+        const onCancelEdit = useCallback(() => {
+            dispatch(profileActions.cancelEdit());
+        }, [dispatch]);
 
-    const onSave = useCallback(() => {
-        dispatch(updateProfileData());
-    }, [dispatch]);
+        const onSave = useCallback(() => {
+            dispatch(updateProfileData());
+        }, [dispatch]);
 
-    return (
-        <HStack justify="between" max className={classNames('', {}, [className])}>
-            <Text title={t('Профиль')} />
-            {/* проверяем на авторизованного пользователя и только потом отрисовываем */}
-            {canEdit && (
-                <div>
-                    {/* по флагу будет менять кнопку (отменить и редактировать) */}
-                    {readonly
-                        ? (
+        return (
+            <HStack
+                justify="between"
+                max
+                className={classNames('', {}, [className])}
+            >
+                <Text title={t('Профиль')} />
+                {/* проверяем на авторизованного пользователя и только потом отрисовываем */}
+                {canEdit && (
+                    <div>
+                        {/* по флагу будет менять кнопку (отменить и редактировать) */}
+                        {readonly ? (
                             <Button
                                 theme={ButtonTheme.OUTLINE}
                                 onClick={onEdit}
                             >
                                 {t('Редактировать')}
                             </Button>
-                        )
-                        : (
+                        ) : (
                             <HStack gap="8">
                                 <Button
                                     theme={ButtonTheme.OUTLINE_RED}
@@ -75,9 +76,9 @@ export const EditableProfileCardHeader = memo((props: EditableProfileCardHeaderP
                                 </Button>
                             </HStack>
                         )}
-                </div>
-            )}
-
-        </HStack>
-    );
-});
+                    </div>
+                )}
+            </HStack>
+        );
+    },
+);

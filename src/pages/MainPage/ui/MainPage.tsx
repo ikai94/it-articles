@@ -7,15 +7,11 @@ const MainPage = memo(() => {
     const { t } = useTranslation();
     const [value, setValue] = useState('');
 
-    const onChange = (val:string) => {
+    const onChange = (val: string) => {
         setValue(val);
     };
 
-    return (
-        <Page>
-            {t('Главная страница')}
-        </Page>
-    );
+    return <Page>{t('Главная страница')}</Page>;
 });
 
 export default MainPage;

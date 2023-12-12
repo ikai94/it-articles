@@ -20,26 +20,29 @@ const options = [
     { value: Country.Ukraine, content: Country.Ukraine },
 ];
 
-export const CountrySelect = memo(({
-    className, value, onChange, readonly,
-}: CountrySelectProps) => {
-    const { t } = useTranslation();
+export const CountrySelect = memo(
+    ({ className, value, onChange, readonly }: CountrySelectProps) => {
+        const { t } = useTranslation();
 
-    // приводим к явному типу полученных значений Country...
-    const onChangeHandler = useCallback((value: string) => {
-        onChange?.(value as Country);
-    }, [onChange]);
+        // приводим к явному типу полученных значений Country...
+        const onChangeHandler = useCallback(
+            (value: string) => {
+                onChange?.(value as Country);
+            },
+            [onChange],
+        );
 
-    return (
-        <ListBox
-            onChange={onChangeHandler}
-            value={value}
-            defaultValue={t('Укажите страну')}
-            items={options}
-            readonly={readonly}
-            className={className}
-            direction="top right"
-            label={t('Укажите страну')}
-        />
-    );
-});
+        return (
+            <ListBox
+                onChange={onChangeHandler}
+                value={value}
+                defaultValue={t('Укажите страну')}
+                items={options}
+                readonly={readonly}
+                className={className}
+                direction="top right"
+                label={t('Укажите страну')}
+            />
+        );
+    },
+);

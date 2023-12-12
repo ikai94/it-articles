@@ -17,12 +17,7 @@ interface StarRatingProps {
 const stars = [1, 2, 3, 4, 5];
 
 export const StarRating = memo((props: StarRatingProps) => {
-    const {
-        className,
-        selectedStars = 0,
-        size = 30,
-        onSelect,
-    } = props;
+    const { className, selectedStars = 0, size = 30, onSelect } = props;
     // количество выбранных звезд
     const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars);
     // проверяем выбрано ли хоть одно значение
@@ -69,7 +64,6 @@ export const StarRating = memo((props: StarRatingProps) => {
                     onMouseLeave={onLeave}
                     onMouseEnter={onHover(starNumber)}
                     onClick={onClick(starNumber)}
-
                 />
             ))}
         </div>

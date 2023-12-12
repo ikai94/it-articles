@@ -18,4 +18,5 @@ const recommendationsApi = rtkApi.injectEndpoints({
 });
 
 // инициализация автоматически созданного хука
-export const useArticleRecommendationsList = recommendationsApi.useGetArticleRecommendationsListQuery;
+export const useArticleRecommendationsList =
+    recommendationsApi.useGetArticleRecommendationsListQuery;

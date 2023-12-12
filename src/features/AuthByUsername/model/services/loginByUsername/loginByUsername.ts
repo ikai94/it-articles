@@ -11,7 +11,11 @@ interface LoginByUsernameProps {
 
 // создаю запрос для получения данных с сервера
 // дженерикам передается 1 аргумент то что возвращает сервак, в данном случаи данные пользователя, а второй аргумент то что ожидается на вход, третим аргументом передается обработчик ошибок
-export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, ThunkConfig<string>>(
+export const loginByUsername = createAsyncThunk<
+    User,
+    LoginByUsernameProps,
+    ThunkConfig<string>
+>(
     'login/loginByUsername',
     // authData передаем на прямую как тело запроса (можно было реализовать деструктуризацию с паролем и именем пользователя)
     async (authData, thunkAPI) => {
@@ -26,7 +30,10 @@ export const loginByUsername = createAsyncThunk<User, LoginByUsernameProps, Thun
             }
 
             // своего рода эмитация бекенда, и так как в локалсторедж можно хранить только строки, то используем stringify для преобразования
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
+            localStorage.setItem(
+                USER_LOCALSTORAGE_KEY,
+                JSON.stringify(response.data),
+            );
             // получаем данные которые мы получили с сервера
             dispatch(userActions.setAuthData(response.data));
 

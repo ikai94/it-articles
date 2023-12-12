@@ -9,11 +9,9 @@ interface ArticleEditPageProps {
 }
 
 const ArticleEditPage = memo((props: ArticleEditPageProps) => {
-    const {
-        className,
-    } = props;
+    const { className } = props;
     const { t } = useTranslation();
-    const { id } = useParams<{id: string}>();
+    const { id } = useParams<{ id: string }>();
     // осуществляет проверку на наличие элемента (true or false)
     const isEdit = Boolean(id);
 
@@ -22,7 +20,7 @@ const ArticleEditPage = memo((props: ArticleEditPageProps) => {
             {/* так как используем один компонент на два роута (создание и редактирование) то отрисовываем согласно проверки по id */}
             {isEdit
                 ? t('Редактирование статьи с ID = ') + id
-                : t('Создание новой статьи') }
+                : t('Создание новой статьи')}
         </Page>
     );
 });

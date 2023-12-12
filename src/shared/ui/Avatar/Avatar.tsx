@@ -15,15 +15,21 @@ interface AvatarProps {
 }
 
 export const Avatar = ({
-    className, src, size = 100, alt,
+    className,
+    src,
+    size = 100,
+    alt,
     fallbackInverted,
 }: AvatarProps) => {
     const mods: Mods = {};
     // мемоизируем так как это стайл и это объект
-    const styles = useMemo<CSSProperties>(() => ({
-        width: size,
-        height: size,
-    }), [size]);
+    const styles = useMemo<CSSProperties>(
+        () => ({
+            width: size,
+            height: size,
+        }),
+        [size],
+    );
 
     /**
      * Подгрузка скелетона
@@ -32,7 +38,14 @@ export const Avatar = ({
     /**
      * Подгрузка запасной аватарки в случаи ошибки
      */
-    const errorFallback = <Icon inverted={fallbackInverted} width={size} height={size} Svg={UserIcon} />;
+    const errorFallback = (
+        <Icon
+            inverted={fallbackInverted}
+            width={size}
+            height={size}
+            Svg={UserIcon}
+        />
+    );
 
     return (
         <AppImage

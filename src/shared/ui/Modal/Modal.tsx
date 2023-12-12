@@ -18,17 +18,15 @@ interface ModalProps {
 const ANIMATION_DELAY = 300;
 
 export const Modal = (props: ModalProps) => {
-    const {
-        className,
-        children,
-        isOpen,
-        onClose,
-        lazy,
-    } = props;
+    const { className, children, isOpen, onClose, lazy } = props;
 
     const { theme } = useTheme();
     // хук который отвечает за реализацию открытия и закрытия модального окна
-    const { isClosing, close, isMounted } = useModal({ animationDelay: ANIMATION_DELAY, isOpen, onClose });
+    const { isClosing, close, isMounted } = useModal({
+        animationDelay: ANIMATION_DELAY,
+        isOpen,
+        onClose,
+    });
 
     const mods: Mods = {
         // Когда значение true, навешивается стиль opened со значением opacity=1 и окно становится видимым
@@ -44,14 +42,16 @@ export const Modal = (props: ModalProps) => {
     return (
         // переносим компонент на верхний уровень дом дерева при помощи портала
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}>
+            <div
+                className={classNames(cls.Modal, mods, [
+                    className,
+                    theme,
+                    'app_modal',
+                ])}
+            >
                 {/* добавляем нажатие на область видимости overlay */}
                 <Overlay onClick={close} />
-                <div
-                    className={cls.content}
-                >
-                    {children}
-                </div>
+                <div className={cls.content}>{children}</div>
             </div>
         </Portal>
     );

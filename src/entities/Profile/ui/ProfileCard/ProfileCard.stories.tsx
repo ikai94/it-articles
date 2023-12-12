@@ -16,7 +16,9 @@ export default {
     decorators: [withMock],
 } as ComponentMeta<typeof ProfileCard>;
 
-const Template: ComponentStory<typeof ProfileCard> = (args) => <ProfileCard {...args} />;
+const Template: ComponentStory<typeof ProfileCard> = (args) => (
+    <ProfileCard {...args} />
+);
 
 export const Normal = Template.bind({});
 Normal.args = {
@@ -31,9 +33,7 @@ Normal.args = {
         avatar,
     },
 };
-Normal.decorators = [
-    StoreDecorator({}),
-];
+Normal.decorators = [StoreDecorator({})];
 
 export const isLoading = Template.bind({});
 isLoading.args = {

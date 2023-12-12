@@ -8,33 +8,33 @@ export const fetchCommentsByArticleId = createAsyncThunk<
     Comment[],
     string | undefined,
     ThunkConfig<string>
-    >(
-        'articleDetails/FetchCommentsByArticleId ',
-        // тела запроса не будет, так как это get запрос
-        async (articleId, thunkAPI) => {
-            const { extra, rejectWithValue } = thunkAPI;
+>(
+    'articleDetails/FetchCommentsByArticleId ',
+    // тела запроса не будет, так как это get запрос
+    async (articleId, thunkAPI) => {
+        const { extra, rejectWithValue } = thunkAPI;
 
-            if (!articleId) {
-                return rejectWithValue('error');
-            }
+        if (!articleId) {
+            return rejectWithValue('error');
+        }
 
-            try {
+        try {
             // делаем запрос на бекенд
-                const response = await extra.api.get<Comment[]>('/comments', {
-                    params: {
-                        articleId,
-                        _expand: 'user',
-                    },
-                });
+            const response = await extra.api.get<Comment[]>('/comments', {
+                params: {
+                    articleId,
+                    _expand: 'user',
+                },
+            });
 
-                if (!response.data) {
-                    throw new Error();
-                }
-
-                return response.data;
-            } catch (e) {
-            // rejectWithValue используется для обработки ошибок, который вытягивается из thunkAPI
-                return rejectWithValue('error');
+            if (!response.data) {
+                throw new Error();
             }
-        },
-    );
+
+            return response.data;
+        } catch (e) {
+            // rejectWithValue используется для обработки ошибок, который вытягивается из thunkAPI
+            return rejectWithValue('error');
+        }
+    },
+);

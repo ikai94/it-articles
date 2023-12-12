@@ -1,5 +1,8 @@
 import {
-    CombinedState, configureStore, Reducer, ReducersMapObject,
+    CombinedState,
+    configureStore,
+    Reducer,
+    ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { counterReducers } from '@/entities/Counter';
 import { userReducers } from '@/entities/User';
@@ -39,11 +42,12 @@ export function createReduxStore(
         devTools: __IS_DEV__,
         // подготовка необходимых данных для тестов и сторибука (задаем первоначальные состояния). Принимаем их аргументом
         preloadedState: initialState,
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-            thunk: {
-                extraArgument: extraArg,
-            },
-        }).concat(rtkApi.middleware),
+        middleware: (getDefaultMiddleware) =>
+            getDefaultMiddleware({
+                thunk: {
+                    extraArgument: extraArg,
+                },
+            }).concat(rtkApi.middleware),
     });
 
     // @ts-ignore

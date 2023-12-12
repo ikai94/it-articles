@@ -1,6 +1,4 @@
-import {
-    memo, MutableRefObject, ReactNode, useRef, UIEvent,
-} from 'react';
+import { memo, MutableRefObject, ReactNode, useRef, UIEvent } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -25,8 +23,8 @@ export const Page = memo((props: PageProps) => {
     const dispatch = useAppDispatch();
     const { pathname } = useLocation();
     // так как есть аргумент, то необходимо воспользоваться callback функцией, которая вызовет функцию внутри селектора
-    const scrollPosition = useSelector(
-        (state: StateSchema) => getUIScrollByPath(state, pathname),
+    const scrollPosition = useSelector((state: StateSchema) =>
+        getUIScrollByPath(state, pathname),
     );
 
     useInfiniteScroll({
@@ -40,11 +38,13 @@ export const Page = memo((props: PageProps) => {
     });
 
     // функция которая отвечает за сохранения координат скрола
-    const onScroll = useThrottle((e:UIEvent<HTMLDivElement>) => {
-        dispatch(uiActions.setScrollPosition({
-            position: e.currentTarget.scrollTop,
-            path: pathname,
-        }));
+    const onScroll = useThrottle((e: UIEvent<HTMLDivElement>) => {
+        dispatch(
+            uiActions.setScrollPosition({
+                position: e.currentTarget.scrollTop,
+                path: pathname,
+            }),
+        );
     }, 500);
 
     return (
@@ -55,7 +55,9 @@ export const Page = memo((props: PageProps) => {
         >
             {children}
             {/* элемент который будет находится внизу страницы, и после его пересечения будет срабатывать callback */}
-            { onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null }
+            {onScrollEnd ? (
+                <div className={cls.trigger} ref={triggerRef} />
+            ) : null}
         </main>
     );
 });

@@ -11,14 +11,14 @@ export const uiSlice = createSlice({
     initialState,
     reducers: {
         // при помощи payloadAction мы определеям что ожидаем внутри экшена. Внутри дженерика объектом обозначаем поля которые будем получать. { 'путь' : 500}
-        setScrollPosition: (state, { payload }: PayloadAction<{path: string, position: number}>) => {
+        setScrollPosition: (
+            state,
+            { payload }: PayloadAction<{ path: string; position: number }>,
+        ) => {
             state.scroll[payload.path] = payload.position;
         },
     },
 });
 
 // экспорт экшинов и редьюсеров через деструктуризацию
-export const {
-    actions: uiActions,
-    reducer: uiReducers,
-} = uiSlice;
+export const { actions: uiActions, reducer: uiReducers } = uiSlice;

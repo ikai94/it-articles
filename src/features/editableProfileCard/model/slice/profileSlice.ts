@@ -46,12 +46,15 @@ export const profileSlice = createSlice({
                 // будем показывать какой нибудь спинер
                 state.isLoading = true;
             })
-            .addCase(fetchProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
-                state.isLoading = false;
-                // сохранение данных от сервера в state
-                state.data = action.payload;
-                state.form = action.payload;
-            })
+            .addCase(
+                fetchProfileData.fulfilled,
+                (state, action: PayloadAction<Profile>) => {
+                    state.isLoading = false;
+                    // сохранение данных от сервера в state
+                    state.data = action.payload;
+                    state.form = action.payload;
+                },
+            )
             .addCase(fetchProfileData.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
@@ -62,14 +65,17 @@ export const profileSlice = createSlice({
                 // будем показывать какой нибудь спинер
                 state.isLoading = true;
             })
-            .addCase(updateProfileData.fulfilled, (state, action: PayloadAction<Profile>) => {
-                state.isLoading = false;
-                // сохранение данных от сервера в state
-                state.data = action.payload;
-                state.form = action.payload;
-                state.readonly = true;
-                state.validateErrors = undefined;
-            })
+            .addCase(
+                updateProfileData.fulfilled,
+                (state, action: PayloadAction<Profile>) => {
+                    state.isLoading = false;
+                    // сохранение данных от сервера в state
+                    state.data = action.payload;
+                    state.form = action.payload;
+                    state.readonly = true;
+                    state.validateErrors = undefined;
+                },
+            )
             .addCase(updateProfileData.rejected, (state, action) => {
                 state.isLoading = false;
                 state.validateErrors = action.payload;

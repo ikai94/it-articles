@@ -10,8 +10,15 @@ project.addSourceFilesAtPaths('src/**/*.tsx');
 const files = project.getSourceFiles();
 
 // проверка на начальный текст строки, если есть то возвращает true
-function isAbsolute(value:string) {
-    const layers = ['app', 'shared', 'entities', 'features', 'widgets', 'pages'];
+function isAbsolute(value: string) {
+    const layers = [
+        'app',
+        'shared',
+        'entities',
+        'features',
+        'widgets',
+        'pages',
+    ];
     return layers.some((layer) => value.startsWith(layer));
 }
 
