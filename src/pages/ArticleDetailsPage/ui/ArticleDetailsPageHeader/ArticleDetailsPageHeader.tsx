@@ -8,6 +8,8 @@ import { getArticleDetailsData } from '@/entities/Article';
 import { HStack } from '@/shared/ui/Stack';
 import { getCanEditArticle } from '../../model/selectors/article';
 import { getRouteArticleEdit, getRouteArticles } from '@/shared/const/router';
+import { toggleFeatures } from '@/shared/lib/features';
+import { Counter } from '@/entities/Counter';
 
 interface ArticleDetailsPageHeaderProps {
     className?: string;

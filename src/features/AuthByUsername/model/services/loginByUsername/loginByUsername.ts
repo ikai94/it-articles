@@ -34,7 +34,7 @@ export const loginByUsername = createAsyncThunk<
                 USER_LOCALSTORAGE_KEY,
                 JSON.stringify(response.data),
             );
-            // получаем данные которые мы получили с сервера
+            // передаем данные которые мы получили с сервера
             dispatch(userActions.setAuthData(response.data));
 
             return response.data;

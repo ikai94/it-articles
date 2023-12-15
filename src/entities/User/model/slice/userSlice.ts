@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localestorage';
 import { User, UserSchema } from '../types/user';
+import { setFeatureFlags } from '@/shared/lib/features';
 
 const initialState: UserSchema = {
     _inited: false,
@@ -11,17 +12,25 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        // сохраняем пользователей в базу
+        /**
+         * сохраняем пользователя в базу
+         */
         setAuthData: (state, action: PayloadAction<User>) => {
             state.authData = action.payload;
+            /**
+             * устанавливает значение флагов для авторизованного пользователя
+             */
+            setFeatureFlags(action.payload.features);
         },
-        // метод позволяет сохранять данные, что пользователь авторизован
+        // метод позволяет получать данные из localStorage, что пользователь авторизован
         initAuthData: (state) => {
             // получаем по ключу данные
             const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
             if (user) {
+                const json = JSON.parse(user) as User;
                 // передаем в состояние, но перед этим парсим, так как они у нас в строке.
-                state.authData = JSON.parse(user);
+                state.authData = json;
+                setFeatureFlags(json.features);
             }
             state._inited = true;
         },
