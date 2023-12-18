@@ -12,7 +12,6 @@ function App() {
     const dispatch = useDispatch();
     // ключ по которому будем отрисовывать AppRouter
     const inited = useSelector(getUserInited);
-
     // вызываем через диспатч проверку авторизации пользователя
     useEffect(() => {
         dispatch(userActions.initAuthData());

@@ -1,5 +1,6 @@
 import { UserRole } from '../consts/UserRoleConsts';
 import { FeatureFlags } from '@/shared/types/featureFlags';
+import { JsonSettings } from '../../model/types/jsonSettings';
 
 export interface User {
     id: string;
@@ -7,6 +8,7 @@ export interface User {
     avatar?: string;
     roles?: UserRole[];
     features?: FeatureFlags;
+    jsonSettings?: JsonSettings;
 }
 
 // интерфейс для стейта юзер

@@ -1206,6 +1206,11 @@
       "roles": [
         "ADMIN"
       ],
+      "jsonSettings": {
+        "theme": "app_dark_theme",
+        "isFirstVisit": true,
+        "SettingsPageHasBeenOpen": false
+      },
       "features": {
         "isArticleRatingEnabled": true,
         "isCounterEnabled": true
@@ -1219,6 +1224,11 @@
       "roles": [
         "USER"
       ],
+      "jsonSettings": {
+        "theme": "app_orange_theme",
+        "isFirstVisit": true,
+        "SettingsPageHasBeenOpen": false
+      },
       "features": {
         "isArticleRatingEnabled": false,
         "isCounterEnabled": true
@@ -1232,6 +1242,11 @@
       "roles": [
         "MANAGER"
       ],
+      "jsonSettings": {
+        "theme": "app_orange_theme",
+        "isFirstVisit": true,
+        "SettingsPageHasBeenOpen": false
+      },
       "features": {
         "isArticleRatingEnabled": false,
         "isCounterEnabled": false
