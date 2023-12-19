@@ -25,7 +25,8 @@
         "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
         "storybook": "start-storybook -p 6006 -c ./config/storybook",
         "storybook:build": "build-storybook -c ./config/storybook",
-        "generate:slice": "node ./scripts/createSlice/index.js"
+        "generate:slice": "node ./scripts/createSlice/index.js",
+        "remove-features": "ts-node ./scripts/remove-feature.ts"
     },
     "lint-staged": {
         "**/*.{ts,tsx}": [
@@ -102,7 +103,6 @@
         "stylelint": "^14.5.3",
         "stylelint-config-standard-scss": "^3.0.0",
         "ts-loader": "^9.2.6",
-        "ts-morph": "^20.0.0",
         "ts-node": "^10.5.0",
         "typescript": "^4.5.5",
         "vite": "^3.1.0",
@@ -127,7 +127,8 @@
         "react-dom": "^18.2.0",
         "react-i18next": "^11.18.3",
         "react-redux": "^7.2.6",
-        "react-router-dom": "^6.2.1"
+        "react-router-dom": "^6.2.1",
+        "ts-morph": "^16.0.0"
     },
     "loki": {
         "configurations": {

@@ -1209,7 +1209,8 @@
       "jsonSettings": {
         "theme": "app_orange_theme",
         "isFirstVisit": true,
-        "SettingsPageHasBeenOpen": false
+        "SettingsPageHasBeenOpen": false,
+        "isArticlePageWasOpened": true
       },
       "features": {
         "isArticleRatingEnabled": true,
@@ -1227,7 +1228,8 @@
       "jsonSettings": {
         "theme": "app_orange_theme",
         "isFirstVisit": true,
-        "SettingsPageHasBeenOpen": false
+        "SettingsPageHasBeenOpen": false,
+        "isArticlePageWasOpened": true
       },
       "features": {
         "isArticleRatingEnabled": false,
@@ -1245,7 +1247,8 @@
       "jsonSettings": {
         "theme": "app_orange_theme",
         "isFirstVisit": true,
-        "SettingsPageHasBeenOpen": false
+        "SettingsPageHasBeenOpen": false,
+        "isArticlePageWasOpened": true
       },
       "features": {
         "isArticleRatingEnabled": false,
