@@ -4,6 +4,7 @@ import { User, UserSchema } from '../types/user';
 import { setFeatureFlags } from '@/shared/lib/features';
 import { JsonSettings } from '../../model/types/jsonSettings';
 import { saveJsonSettings } from '../../model/services/saveJsonSettings';
+import { initAuthData } from '../../model/services/initAuthData';
 
 const initialState: UserSchema = {
     _inited: false,
@@ -23,18 +24,8 @@ export const userSlice = createSlice({
              * устанавливает значение флагов для авторизованного пользователя
              */
             setFeatureFlags(action.payload.features);
-        },
-        // метод позволяет получать данные из localStorage, что пользователь авторизован
-        initAuthData: (state) => {
-            // получаем по ключу данные
-            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
-            if (user) {
-                const json = JSON.parse(user) as User;
-                // передаем в состояние, но перед этим парсим, так как они у нас в строке.
-                state.authData = json;
-                setFeatureFlags(json.features);
-            }
-            state._inited = true;
+            // своего рода эмитация бекенда, добавляем в локалсторедж
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id);
         },
         logout: (state) => {
             // очищаем стейт
@@ -52,6 +43,17 @@ export const userSlice = createSlice({
                 }
             },
         );
+        builder.addCase(
+            initAuthData.fulfilled,
+            (state, { payload }: PayloadAction<User>) => {
+                state.authData = payload;
+                setFeatureFlags(payload.features);
+                state._inited = true;
+            },
+        );
+        builder.addCase(initAuthData.rejected, (state) => {
+            state._inited = true;
+        });
     },
 });
 

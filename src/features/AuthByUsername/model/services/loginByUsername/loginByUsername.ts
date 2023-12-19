@@ -29,11 +29,6 @@ export const loginByUsername = createAsyncThunk<
                 throw new Error();
             }
 
-            // своего рода эмитация бекенда, и так как в локалсторедж можно хранить только строки, то используем stringify для преобразования
-            localStorage.setItem(
-                USER_LOCALSTORAGE_KEY,
-                JSON.stringify(response.data),
-            );
             // передаем данные которые мы получили с сервера
             dispatch(userActions.setAuthData(response.data));
 
