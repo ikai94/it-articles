@@ -11,9 +11,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticlePageGreeting>;
 
-const Template: ComponentStory<typeof ArticlePageGreeting> = (args) => <ArticlePageGreeting {...args} />;
+const Template: ComponentStory<typeof ArticlePageGreeting> = () => (
+    <ArticlePageGreeting />
+);
 
 export const Normal = Template.bind({});
-Normal.args = {
-   
-};
+Normal.args = {};

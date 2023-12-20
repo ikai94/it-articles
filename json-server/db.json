@@ -1207,14 +1207,15 @@
         "ADMIN"
       ],
       "jsonSettings": {
-        "theme": "app_orange_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": true,
         "SettingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
       },
       "features": {
         "isArticleRatingEnabled": true,
-        "isCounterEnabled": true
+        "isCounterEnabled": true,
+        "isAppRedesigned": true
       },
       "avatar": "https://wordpress-s3websitefiles-qe2pg7xcae3.s3.us-east-2.amazonaws.com/wordpress/wp-content/uploads/2019/11/26160520/Male.jpg"
     },
@@ -1226,7 +1227,7 @@
         "USER"
       ],
       "jsonSettings": {
-        "theme": "app_orange_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "SettingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
