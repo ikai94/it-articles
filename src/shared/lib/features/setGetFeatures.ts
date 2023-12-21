@@ -3,7 +3,7 @@ import { FeatureFlags } from '@/shared/types/featureFlags';
 /**
  * отсутствие экспорта позволяет не затереть случайно значение в этой константе. Изменить можно только через сетер setFeatureFlags
  */
-let featureFlags: FeatureFlags;
+let featureFlags: FeatureFlags = {};
 
 /**
  * флаг для отрисовки компонентов (не реактивный). Значение указывается в базе данных, и отрисовывает определенным пользователям
