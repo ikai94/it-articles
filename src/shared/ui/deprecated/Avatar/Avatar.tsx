@@ -1,6 +1,6 @@
 import { CSSProperties, useMemo } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
-import { AppImage } from '../AppImage';
+import { AppImage } from '../../redesigned/AppImage';
 import { Icon } from '../Icon';
 import { Skeleton } from '../Skeleton';
 import UserIcon from '../../../assets/icons/user-filled.svg';
