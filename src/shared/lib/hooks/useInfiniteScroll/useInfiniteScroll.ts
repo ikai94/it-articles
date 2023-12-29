@@ -5,7 +5,7 @@ export interface UseInfiniteScrollOptions {
     // после пересечения элемента на котором висит этот ref будет вызываться callback
     triggerRef: MutableRefObject<HTMLElement>;
     // внутри этого реф находится скролл ( в нашем случаи Page - компонент). Иногда wrapperom может быть вся страница
-    wrapperRef: MutableRefObject<HTMLElement>;
+    wrapperRef?: MutableRefObject<HTMLElement>;
 }
 
 export function useInfiniteScroll({
@@ -14,7 +14,7 @@ export function useInfiniteScroll({
     callback,
 }: UseInfiniteScrollOptions) {
     useEffect(() => {
-        const wrapperElement = wrapperRef.current;
+        const wrapperElement = wrapperRef?.current || null;
         const triggerElement = triggerRef.current;
         let observer: IntersectionObserver | null = null;
         if (callback) {

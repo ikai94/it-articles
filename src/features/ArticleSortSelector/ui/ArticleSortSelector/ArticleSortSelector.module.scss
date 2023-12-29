@@ -1,8 +1,14 @@
 .ArticleSortSelector {
     display: flex;
     align-items: center;
+
+    .order {
+        margin-left: 8px;
+    }
 }
 
-.order {
-    margin-left: 8px;
+
+.ArticleSortSelectorRedesigned {
+    display: flex;
+    align-items: center;
 }

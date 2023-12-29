@@ -5,7 +5,7 @@ import cls from './Button.module.scss';
 /**
  * Темы для кнопки
  */
-export type ButtonVariant = 'clear' | 'outline';
+export type ButtonVariant = 'clear' | 'outline' | 'filled';
 /**
  * Размеры для кнопки
  */
