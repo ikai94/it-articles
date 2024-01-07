@@ -1,26 +1,35 @@
 import React, {
     InputHTMLAttributes,
     memo,
+    ReactNode,
     useEffect,
     useRef,
     useState,
 } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
+import { HStack } from '../../redesigned/Stack';
+import { Text } from '../../redesigned/Text';
 
 // Omit позволяет забрать из типов все пропсы, но исключить те которые не нужны (первым агрументом то что хотим забрать, а вторым аргументом что хотим исключить)
 type HTMLInputProps = Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    'value' | 'onChange' | 'readonly'
+    'value' | 'onChange' | 'readonly' | 'size'
 >;
+
+type InputSize = 's' | 'm' | 'l';
 
 // используем расширение для пропсов
 interface InputProps extends HTMLInputProps {
     className?: string;
     value?: string | number;
+    label?: string;
     onChange?: (value: string) => void;
     autofocus?: boolean;
     readonly?: boolean;
+    addonLeft?: ReactNode;
+    addonRight?: ReactNode;
+    size?: InputSize;
 }
 
 // мемо позволяет избежать лишних перересовок компонентов
@@ -33,18 +42,17 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autofocus,
         readonly,
+        addonLeft,
+        addonRight,
+        label,
+        size = 'm',
         ...otherProps
     } = props;
 
     // сделано для добавления фокуса физически в инпут
     const ref = useRef<HTMLInputElement>(null);
-    // отображение каретки
-    const [isFocused, setIsFocused] = useState(false);
-    // позиция каретки
-    const [caretPosition, setCaretPosition] = useState(0);
 
-    // отоброжаем каретку только если инпут в фокусе и состояние не readonly
-    const isCaretVisible = isFocused && !readonly;
+    const [isFocused, setIsFocused] = useState(false);
 
     useEffect(() => {
         if (autofocus) {
@@ -57,7 +65,6 @@ export const Input = memo((props: InputProps) => {
     // 2.позиция будет ровняться длине строки
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
-        setCaretPosition(e.target.value.length);
     };
 
     // это процесс выхода из фокуса
@@ -70,43 +77,47 @@ export const Input = memo((props: InputProps) => {
         setIsFocused(true);
     };
 
-    // отвечает за точное указание коретки
-    const onSelect = (e: any) => {
-        setCaretPosition(e?.target?.selectionStart || 0);
-    };
-
     // для отключения по флагу кликабельности профили
     const mods: Mods = {
         [cls.readonly]: readonly,
+        [cls.focused]: isFocused,
+        [cls.withAddonLeft]: Boolean(addonLeft),
+        [cls.withAddonRight]: Boolean(addonRight),
     };
 
-    return (
+    const input = (
         // отрисовываться будет только в том случаи, если пропс placeholder указан* это же касается и isFocused/
-        <div className={classNames(cls.InputWrapper, mods, [className])}>
-            {placeholder && (
-                <div className={cls.placeholder}>{`${placeholder}>`}</div>
-            )}
-            <div className={cls.caretWrapper}>
-                <input
-                    ref={ref}
-                    type={type}
-                    value={value}
-                    onChange={onChangeHandler}
-                    className={cls.input}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    onSelect={onSelect}
-                    readOnly={readonly}
-                    {...otherProps}
-                />
-                {isCaretVisible && (
-                    <span
-                        className={cls.caret}
-                        // 9 px ширина символа с дефолтным размером и соответственно длина строки умножается на ширину симфола и получается расстояние от левого края
-                        style={{ left: `${caretPosition * 9}px` }}
-                    />
-                )}
-            </div>
+        <div
+            className={classNames(cls.InputWrapper, mods, [
+                className,
+                cls[size],
+            ])}
+        >
+            <div className={cls.addonLeft}>{addonLeft}</div>
+            <input
+                ref={ref}
+                type={type}
+                value={value}
+                onChange={onChangeHandler}
+                className={cls.input}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                readOnly={readonly}
+                placeholder={placeholder}
+                {...otherProps}
+            />
+            <div className={cls.addonRight}>{addonRight}</div>
         </div>
     );
+
+    if (label) {
+        return (
+            <HStack max gap="8">
+                <Text text={label} />
+                {input}
+            </HStack>
+        );
+    }
+
+    return input;
 });
