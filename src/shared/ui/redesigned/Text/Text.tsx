@@ -17,6 +17,7 @@ interface TextProps {
     // выравние текста
     align?: TextAlign;
     size?: TextSize;
+    bold?: boolean;
 }
 
 // для семантики
@@ -43,6 +44,7 @@ export const Text = memo((props: TextProps) => {
         variant = 'primary',
         align = 'left',
         size = 'm',
+        bold,
     } = props;
 
     const HeaderTag = mapSizeToHeaderTag[size];
@@ -57,7 +59,13 @@ export const Text = memo((props: TextProps) => {
     ];
 
     return (
-        <div className={classNames(cls.Text, {}, additionalClasses)}>
+        <div
+            className={classNames(
+                cls.Text,
+                { [cls.bold]: bold },
+                additionalClasses,
+            )}
+        >
             {title && <HeaderTag className={cls.title}>{title}</HeaderTag>}
             {text && <p className={cls.text}>{text}</p>}
         </div>
