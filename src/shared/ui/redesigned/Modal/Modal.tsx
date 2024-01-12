@@ -1,10 +1,11 @@
 import React, { ReactNode } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import { useModal } from '@/shared/lib/hooks/useModal/useModal';
-import { Portal } from '../../redesigned/Portal/Portal';
-import { Overlay } from '../../redesigned/Overlay/Overlay';
+import { Portal } from '../Portal/Portal';
+import { Overlay } from '../../deprecated/Overlay/Overlay';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import cls from './Modal.module.scss';
+import { toggleFeatures } from '@/shared/lib/features';
 
 // добавляем типы пропсов, как для внутренней части, так и для открытия и закрытия модального окна
 interface ModalProps {
@@ -44,12 +45,17 @@ export const Modal = (props: ModalProps) => {
 
     return (
         // переносим компонент на верхний уровень дом дерева при помощи портала
-        <Portal>
+        <Portal element={document.getElementById('app') ?? document.body}>
             <div
                 className={classNames(cls.Modal, mods, [
                     className,
                     theme,
                     'app_modal',
+                    toggleFeatures({
+                        name: 'isAppRedesigned',
+                        on: () => cls.modalNew,
+                        off: () => cls.modalOld,
+                    }),
                 ])}
             >
                 {/* добавляем нажатие на область видимости overlay */}
