@@ -53,7 +53,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
             gap="4"
             className={classNames('', { [cls.readonly]: readonly })}
         >
-            {label && <span>{`${label}>`}</span>}
+            {label && <span>{`${label}:`}</span>}
             <HListBox
                 disabled={readonly}
                 as="div"

@@ -1,5 +1,5 @@
 import { FeatureFlags } from '@/shared/types/featureFlags';
-import { getFeatureFlag } from '../features/setGetFeatures';
+import { getFeatureFlag } from './setGetFeatures';
 
 /**
  * входные параметры для переключения действий

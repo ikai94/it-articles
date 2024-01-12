@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/Popups';
 import { Country } from '../../model/types/country';
-import { ToggleFeatures } from '@/shared/lib/features';
+import { toggleFeatures, ToggleFeatures } from '@/shared/lib/features';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 
 interface CountrySelectProps {
@@ -40,7 +40,11 @@ export const CountrySelect = memo(
             readonly,
             className,
             direction: 'top right' as const,
-            label: t('Укажите страну'),
+            label: toggleFeatures({
+                name: 'isAppRedesigned',
+                on: () => t('Страна'),
+                off: () => t('Укажите страну'),
+            }),
         };
 
         return (
