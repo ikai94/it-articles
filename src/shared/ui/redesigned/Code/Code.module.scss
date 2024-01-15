@@ -15,3 +15,15 @@
 .copyIcon path {
     stroke: var(--primary-color);
 }
+
+
+//--- redesigned
+
+.CodeRedesigned {
+    padding: 20px;
+    position: relative;
+    background: var(--light-bg-redesigned);
+    overflow: auto;
+    border: 1px solid var(--accent-redesigned);
+    border-radius: 16px;
+}
