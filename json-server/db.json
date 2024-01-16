@@ -1196,6 +1196,12 @@
       "userId": "1",
       "text": "dgdgdgg",
       "id": "Qy_x5wK"
+    },
+    {
+      "articleId": "11",
+      "userId": "1",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur deleniti facilis fuga hic placeat sit voluptas voluptatem! Atque culpa, dolorum fugiat incidunt iure modi quae, ratione repellendus reprehenderit totam vero.",
+      "id": "2f_JSDM"
     }
   ],
   "users": [
@@ -1207,7 +1213,7 @@
         "ADMIN"
       ],
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": true,
         "SettingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
