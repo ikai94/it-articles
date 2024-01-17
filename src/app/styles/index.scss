@@ -21,3 +21,18 @@
 .content-page {
     display: flex;
 }
+
+*::-webkit-scrollbar {
+    width: 12px;               /* ширина scrollbar */
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--light-bg-redesigned);        /* цвет дорожки */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--icon-redesigned);    /* цвет плашки */
+    border-radius: 20px;       /* закругления плашки */
+    border: 1px solid var(--accent-redesigned);  /* padding вокруг плашки */
+}
