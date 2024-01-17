@@ -6,6 +6,7 @@ import cls from './Button.module.scss';
  * Темы для кнопки
  */
 export type ButtonVariant = 'clear' | 'outline' | 'filled';
+export type ButtonColor = 'normal' | 'success' | 'error';
 /**
  * Размеры для кнопки
  */
@@ -33,6 +34,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
      * Флаг отвечающий за работу кнопки
      */
     disabled?: boolean;
+    color?: ButtonColor;
     /**
      * Содержимое кнопки
      */
@@ -47,6 +49,7 @@ export const Button = memo((props: ButtonProps) => {
         children,
         variant = 'outline',
         size = 'm',
+        color = 'normal',
         square,
         fullWidth,
         disabled,
@@ -72,6 +75,7 @@ export const Button = memo((props: ButtonProps) => {
                 className,
                 cls[variant],
                 cls[size],
+                cls[color],
             ])}
             disabled={disabled}
             {...otherProps}
