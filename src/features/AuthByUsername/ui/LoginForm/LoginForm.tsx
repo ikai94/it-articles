@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useContext } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
     Button as ButtonDeprecated,
@@ -24,6 +24,7 @@ import cls from './LoginForm.module.scss';
 import { ToggleFeatures } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/redesigned/Button';
 import { Input } from '@/shared/ui/redesigned/Input';
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate';
 
 export interface LoginFormProps {
     className?: string;
@@ -41,6 +42,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
+    const forceUpdate = useForceUpdate();
 
     // при помощи юсколбек реализуем сохранение ссылок и диспатчим состояние которое получаем из инпута
     const onChangeUsername = useCallback(
@@ -63,8 +65,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         // если авторизация выполнена успешно, то необходимо закрывать форму с модальным окном, для этого передаем пропсом onSuccess
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
+            forceUpdate();
         }
-    }, [onSuccess, dispatch, password, username]);
+    }, [dispatch, password, username, onSuccess, forceUpdate]);
 
     return (
         <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
