@@ -1,14 +1,14 @@
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './scrollToTopButton.module.scss';
+import cls from './ScrollToTopButton.module.scss';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import CircleIcon from '@/shared/assets/icons/circle-up.svg';
 
-interface scrollToTopButtonProps {
+interface ScrollToTopButtonProps {
     className?: string;
 }
 
-export const ScrollToTopButton = memo((props: scrollToTopButtonProps) => {
+export const ScrollToTopButton = memo((props: ScrollToTopButtonProps) => {
     const { className } = props;
 
     const onClick = () => {
@@ -22,7 +22,7 @@ export const ScrollToTopButton = memo((props: scrollToTopButtonProps) => {
             onClick={onClick}
             width={32}
             height={32}
-            className={classNames(cls.scrollToTopButton, {}, [className])}
+            className={classNames(cls.ScrollToTopButton, {}, [className])}
         />
     );
 });

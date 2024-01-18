@@ -6,6 +6,10 @@ import avatar from '@/shared/assets/tests/storybook.jpg';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Country } from '@/entities/Country';
 import { Currency } from '@/entities/Currency';
+import { FeaturesFlagsDecorator } from '@/shared/config/storybook/FeaturesFlagsDecorator/FeaturesFlagsDecorator';
+import { Theme } from '@/shared/const/theme';
+import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
     title: 'entities/Profile/ProfileCard',
@@ -20,8 +24,7 @@ const Template: ComponentStory<typeof ProfileCard> = (args) => (
     <ProfileCard {...args} />
 );
 
-export const Normal = Template.bind({});
-Normal.args = {
+const normalArg = {
     data: {
         username: 'admin',
         age: 22,
@@ -33,7 +36,14 @@ Normal.args = {
         avatar,
     },
 };
+
+export const Normal = Template.bind({});
+Normal.args = normalArg;
 Normal.decorators = [StoreDecorator({})];
+
+export const NormalRedesigned = Template.bind({});
+NormalRedesigned.args = normalArg;
+NormalRedesigned.decorators = [NewDesignDecorator];
 
 export const isLoading = Template.bind({});
 isLoading.args = {
