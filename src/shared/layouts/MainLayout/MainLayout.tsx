@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import { memo, ReactElement } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './MainLayout.module.scss';
@@ -13,7 +12,6 @@ interface MainLayoutProps {
 
 export const MainLayout = memo((props: MainLayoutProps) => {
     const { className, header, content, toolbar, sidebar } = props;
-    const { t } = useTranslation();
 
     return (
         <div className={classNames(cls.MainLayout, {}, [className])}>

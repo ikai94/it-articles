@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localestorage';
+import {
+    LOCAL_STORAGE_THEME_LAST_DESIGN_KEY,
+    USER_LOCALSTORAGE_KEY,
+} from '@/shared/const/localestorage';
 import { User, UserSchema } from '../types/user';
 import { setFeatureFlags } from '@/shared/lib/features';
 import { JsonSettings } from '../../model/types/jsonSettings';
@@ -18,14 +21,21 @@ export const userSlice = createSlice({
         /**
          * сохраняем пользователя в базу
          */
-        setAuthData: (state, action: PayloadAction<User>) => {
-            state.authData = action.payload;
+        setAuthData: (state, { payload }: PayloadAction<User>) => {
+            state.authData = payload;
             /**
              * устанавливает значение флагов для авторизованного пользователя
              */
-            setFeatureFlags(action.payload.features);
+            setFeatureFlags(payload.features);
             // своего рода эмитация бекенда, добавляем в локалсторедж
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id);
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, payload.id);
+            /**
+             * Сохранение выбранного флага по ключу, для последующего отображения темы
+             */
+            localStorage.setItem(
+                LOCAL_STORAGE_THEME_LAST_DESIGN_KEY,
+                payload.features?.isAppRedesigned ? 'new' : 'old',
+            );
         },
         logout: (state) => {
             // очищаем стейт
