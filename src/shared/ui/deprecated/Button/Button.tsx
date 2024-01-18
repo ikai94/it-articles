@@ -1,4 +1,10 @@
-import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import {
+    ButtonHTMLAttributes,
+    ForwardedRef,
+    forwardRef,
+    memo,
+    ReactNode,
+} from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Button.module.scss';
 
@@ -54,37 +60,40 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-export const Button = memo((props: ButtonProps) => {
-    const {
-        className,
-        children,
-        theme = ButtonTheme.OUTLINE,
-        size = ButtonSize.M,
-        square,
-        fullWidth,
-        disabled,
-        ...otherProps
-    } = props;
+export const Button = forwardRef(
+    (props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
+        const {
+            className,
+            children,
+            theme = ButtonTheme.OUTLINE,
+            size = ButtonSize.M,
+            square,
+            fullWidth,
+            disabled,
+            ...otherProps
+        } = props;
 
-    /**
-     * вынес модсы в отдельный объект (деструктуризация)
-     */
-    const mods: Mods = {
-        [cls[theme]]: true,
-        [cls.square]: square,
-        [cls[size]]: true,
-        [cls.disabled]: disabled,
-        [cls.fullWidth]: fullWidth,
-    };
+        /**
+         * вынес модсы в отдельный объект (деструктуризация)
+         */
+        const mods: Mods = {
+            [cls[theme]]: true,
+            [cls.square]: square,
+            [cls[size]]: true,
+            [cls.disabled]: disabled,
+            [cls.fullWidth]: fullWidth,
+        };
 
-    return (
-        <button
-            type="button"
-            className={classNames(cls.Button, mods, [className])}
-            disabled={disabled}
-            {...otherProps}
-        >
-            {children}
-        </button>
-    );
-});
+        return (
+            <button
+                type="button"
+                className={classNames(cls.Button, mods, [className])}
+                disabled={disabled}
+                {...otherProps}
+                ref={ref}
+            >
+                {children}
+            </button>
+        );
+    },
+);
