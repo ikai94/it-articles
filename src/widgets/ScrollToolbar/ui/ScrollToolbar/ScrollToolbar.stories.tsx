@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ScrollToolbar } from './ScrollToolbar';
 
 export default {
-    title: 'shared/ScrollToolbar',
+    title: 'widgets/ScrollToolbar',
     component: ScrollToolbar,
     argTypes: {
         backgroundColor: { control: 'color' },

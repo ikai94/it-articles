@@ -3,6 +3,10 @@ import path from 'path';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import { BuildEnv, BuildPaths } from './config/build/types/config';
 
+/**
+ * Экспортируем по дефолту из за переменной окружения env
+ * @param env - пропс переменной окружения
+ */
 export default (env: BuildEnv) => {
     const paths: BuildPaths = {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),

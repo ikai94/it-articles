@@ -18,6 +18,9 @@ export function buildPlugins(
             template: paths.html,
         }),
         new webpack.ProgressPlugin(),
+        /**
+         * Прокидываются глобальные переменные в проект
+         */
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiURL),
@@ -43,6 +46,9 @@ export function buildPlugins(
     // при продакшен сборки этих плагинов не будет, сделано для того, чтоб не запускались эти плагины при тестах
     if (isDev) {
         plugins.push(new ReactRefreshWebpackPlugin());
+        /**
+         * Плагин для подгрузки изменений без перезагрузки страницы
+         */
         plugins.push(new webpack.HotModuleReplacementPlugin());
         // plugins.push(new BundleAnalyzerPlugin({
         //     openAnalyzer: false,

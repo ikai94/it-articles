@@ -1,9 +1,10 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ViewSelectorContainer } from './ViewSelectorContainer';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 export default {
-    title: 'shared/ViewSelectorContainer',
+    title: 'pages/ArticlePage/ViewSelectorContainer',
     component: ViewSelectorContainer,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -16,3 +17,4 @@ const Template: ComponentStory<typeof ViewSelectorContainer> = (args) => (
 
 export const Normal = Template.bind({});
 Normal.args = {};
+Normal.decorators = [StoreDecorator({})];

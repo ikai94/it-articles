@@ -6,7 +6,7 @@ import { ArticlesPageFilters } from './ArticlesPageFilters';
 import { Theme } from '@/shared/const/theme';
 
 export default {
-    title: 'entities/Article/ArticlesPageFilters',
+    title: 'pages/ArticlePage/ArticlesPageFilters',
     component: ArticlesPageFilters,
     argTypes: {
         backgroundColor: { control: 'color' },

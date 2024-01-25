@@ -4,7 +4,7 @@ import { Button } from '../../../Button/Button';
 import { Dropdown } from './Dropdown';
 
 export default {
-    title: 'shared/Popups/Dropdown',
+    title: 'shared/Deprecated/Popups/Dropdown',
     component: Dropdown,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -20,13 +20,13 @@ Normal.args = {
     trigger: <Button>Open</Button>,
     items: [
         {
-            content: 'first',
+            content: 'Первый',
         },
         {
-            content: 'second',
+            content: 'Второй',
         },
         {
-            content: 'third',
+            content: 'Третий',
         },
     ],
 };

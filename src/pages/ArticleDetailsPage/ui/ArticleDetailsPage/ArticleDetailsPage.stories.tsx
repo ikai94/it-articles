@@ -4,6 +4,9 @@ import { Article, ArticleType, ArticleBlockType } from '@/entities/Article';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 
 import ArticleDetailsPage from './ArticleDetailsPage';
+import { FeaturesFlagsDecorator } from '@/shared/config/storybook/FeaturesFlagsDecorator/FeaturesFlagsDecorator';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import { RouteDecorator } from '@/shared/config/storybook/RouteDecorator/RouteDecorator';
 
 export default {
     title: 'pages/ArticleDetailsPage/ArticleDetailsPage',

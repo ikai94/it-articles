@@ -3,7 +3,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { AppLoaderLayout } from './AppLoaderLayout';
 
 export default {
-    title: 'shared/AppLoaderLayout',
+    title: 'shared/layout/AppLoaderLayout',
     component: AppLoaderLayout,
     argTypes: {
         backgroundColor: { control: 'color' },
