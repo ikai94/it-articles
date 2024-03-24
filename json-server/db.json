@@ -1213,7 +1213,7 @@
         "ADMIN"
       ],
       "jsonSettings": {
-        "theme": "app_dark_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "SettingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
@@ -1267,7 +1267,7 @@
   "profile": [
     {
       "id": "1",
-      "first": "Fedor",
+      "first": "Fedoradada",
       "lastname": "Konuxov",
       "age": 56,
       "currency": "USD",
