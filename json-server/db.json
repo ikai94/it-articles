@@ -1213,7 +1213,7 @@
         "ADMIN"
       ],
       "jsonSettings": {
-        "theme": "app_light_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": true,
         "SettingsPageHasBeenOpen": false,
         "isArticlePageWasOpened": true
